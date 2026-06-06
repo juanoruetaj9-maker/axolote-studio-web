@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Servicios — Axolote Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #1B4FD8;
+      --brand-dark: #1438A6;
+      --brand-light: #EEF2FF;
+      --coral: #E8765A;
+      --sand: #F7F0E8;
+      --gray-950: #0a0a0a;
+      --gray-800: #1f2937;
+      --gray-600: #4b5563;
+      --gray-400: #9ca3af;
+      --gray-100: #f3f4f6;
+      --green: #22c55e;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-800);
+      background: #fff;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* ── PAGE ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 14mm 14mm 12mm;
+      background: #fff;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--brand);
+      margin-bottom: 18px;
+    }
+    .header-brand { display: flex; align-items: center; gap: 10px; }
+    .header-brand img { height: 36px; width: auto; }
+    .header-tagline { font-size: 10px; color: var(--gray-400); }
+    .header-contact { text-align: right; font-size: 10px; color: var(--gray-600); line-height: 1.7; }
+    .header-contact strong { color: var(--brand); }
+
+    /* ── HERO STRIP ── */
+    .hero-strip {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: #fff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hero-strip h1 { font-size: 18px; font-weight: 800; }
+    .hero-strip p { font-size: 10.5px; color: rgba(255,255,255,0.8); margin-top: 3px; }
+    .badge-date { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 12px; font-size: 10px; color: #fff; white-space: nowrap; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--brand-light);
+      color: var(--brand);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .section-label.coral { background: #FEF0EC; color: var(--coral); }
+
+    /* ── SECTION HEADING ── */
+    .section-h2 { font-size: 15px; font-weight: 800; color: var(--gray-950); margin-bottom: 12px; }
+
+    /* ── PRICE GRID ── */
+    .price-grid {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .price-grid-2 { grid-template-columns: 1fr 1fr; }
+    .price-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .price-card {
+      border: 1.5px solid var(--gray-100);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .price-card.highlight {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+    }
+    .price-card .badge-pop {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--coral);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+    .card-plan { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .card-price { font-size: 26px; font-weight: 800; color: var(--brand); line-height: 1; }
+    .price-card.highlight .card-price { color: #fff; }
+    .card-currency { font-size: 11px; color: var(--gray-400); }
+    .price-card.highlight .card-currency { color: rgba(255,255,255,0.6); }
+    .card-time { font-size: 9.5px; color: var(--gray-400); margin-top: 2px; margin-bottom: 10px; }
+    .price-card.highlight .card-time { color: rgba(255,255,255,0.6); }
+    .card-includes { list-style: none; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .card-includes li {
+      font-size: 10.5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      color: var(--gray-600);
+    }
+    .price-card.highlight .card-includes li { color: rgba(255,255,255,0.85); }
+    .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .price-card.highlight .check { color: #86efac; }
+
+    /* ── EXTRAS TABLE ── */
+    .extras-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 20px;
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .extras-table th {
+      background: var(--gray-100);
+      padding: 7px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray-600);
+    }
+    .extras-table td { padding: 7px 12px; border-top: 1px solid var(--gray-100); }
+    .extras-table td:last-child { font-weight: 600; color: var(--brand); text-align: right; }
+
+    /* ── GUARANTEES ── */
+    .guarantees {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .guarantee-item {
+      background: var(--brand-light);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .guarantee-icon { font-size: 14px; flex-shrink: 0; }
+    .guarantee-title { font-size: 11px; font-weight: 700; color: var(--gray-800); }
+    .guarantee-desc { font-size: 10px; color: var(--gray-600); margin-top: 1px; }
+
+    /* ── PROCESS STEPS ── */
+    .steps-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--gray-100);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .step-num {
+      width: 24px; height: 24px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title { font-size: 11.5px; font-weight: 700; color: var(--gray-800); }
+    .step-desc { font-size: 10.5px; color: var(--gray-600); margin-top: 1px; }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: var(--gray-400);
+    }
+    .doc-footer strong { color: var(--brand); }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--gray-100); margin: 18px 0; }
+
+    /* ── PAGE BREAK ── */
+    .page-break { page-break-after: always; }
+
+    @media print {
+      body { background: #fff; }
+      .page { padding: 10mm 12mm; margin: 0; width: 100%; }
+      .page-break { page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================= PÁGINA 1: CATÁLOGO ========================= -->
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-brand">
+      <img src="../logos/Favicon de Axolote Studio.png" alt="Axolote Studio" />
+      <div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:15px; color:#0a0a0a;">Axolote Studio</div>
+        <div class="header-tagline">Estudio Creativo &amp; Digital</div>
+      </div>
+    </div>
+    <div class="header-contact">
+      <strong>WhatsApp:</strong> 993 222 8936<br />
+      <strong>Email:</strong> hola@axolotestudio.mx<br />
+      <strong>Web:</strong> axolotestudio.mx
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero-strip">
+    <div>
+      <h1>Catálogo de Servicios 2025</h1>
+      <p>Precios transparentes. Sin sorpresas. Acompañamiento real en cada proyecto.</p>
+    </div>
+    <div class="badge-date">México · Servicio 100% remoto</div>
+  </div>
+
+  <!-- LÍNEA A -->
+  <div class="section-label coral">💍 Línea A — Experiencias Premium</div>
+  <div class="section-h2">Invitaciones Web para Eventos</div>
+
+  <div class="price-grid price-grid-2">
+    <div class="price-card">
+      <div class="card-plan">Paquete Esencial</div>
+      <div class="card-price">$699 <span class="card-currency">MXN</span></div>
+      <div class="card-time">Entrega en 4–7 días hábiles</div>
+      <ul class="card-includes">
+        <li><span class="check">✓</span> Diseño visual personalizado</li>
+        <li><span class="check">✓</span> Página web de invitación</li>
+        <li><span class="check">✓</span> Información del evento</li>
+        <li><span class="check">✓</span> Ubicación en mapa</li>
+        <li><span class="check">✓</span> Cuenta regresiva</li>
+        <li><span class="check">✓</span> Galería simple</li>
+        <li><span class="check">✓</span> Botón de WhatsApp</li>
+        <li><span class="check">✓</span> Música opcional</li>
+        <li><span class="check">✓</span> Código QR del evento</li>
+      </ul>
+    </div>
+    <div class="price-card highlight">
+      <div class="badge-pop">Más popular</div>
+      <div class="card-plan">Paquete Premium</div>
+      <div class="card-price">$999 <span class="card-currency">MXN</span></div>
+      <div class="card-time">Entrega en 5–10 días hábiles</div>
+      <ul class="card-includes">
+        <li><span class="check">✓</span> Todo el Paquete Esencial</li>
+        <li><span class="check">✓</span> RSVP de confirmación</li>
+        <li><span class="check">✓</span> Galería de fotos premium</li>
+        <li><span class="check">✓</span> Animaciones suaves</li>
+        <li><span class="check">✓</span> Código de vestimenta</li>
+        <li><span class="check">✓</span> Información de hospedaje</li>
+        <li><span class="check">✓</span> Historia de pareja o graduado</li>
+        <li><span class="check">✓</span> Playlist de Spotify</li>
+        <li><span class="check">✓</span> Personalización visual extra</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- LÍNEA B -->
+  <div class="section-label">🏢 Línea B — Presencia Digital</div>
+  <div class="section-h2">Landing Pages para Negocios</div>
+
+  <div class="price-grid price-grid-3">
+    <div class="price-card">
+      <div class="card-plan">Starter</div>
+      <div class="card-price">$799 <span class="card-currency">MXN</span></div>
+      <div class="card-time">Entrega en 7–10 días hábiles</div>
+      <ul class="card-includes">
+        <li><span class="check">✓</span> Landing page funcional</li>
+        <li><span class="check">✓</span> Branding visual básico</li>
+        <li><span class="check">✓</span> Colores y tipografía</li>
+        <li><span class="check">✓</span> Botón WhatsApp directo</li>
+        <li><span class="check">✓</span> Sección de ubicación</li>
+        <li><span class="check">✓</span> Contacto rápido</li>
+        <li><span class="check">✓</span> Diseño 100% responsive</li>
+      </ul>
+    </div>
+    <div class="price-card highlight">
+      <div class="badge-pop">Más popular</div>
+      <div class="card-plan">Premium</div>
+      <div class="card-price">$1,299 <span class="card-currency">MXN</span></div>
+      <div class="card-time">Entrega en 10–15 días hábiles</div>
+      <ul class="card-includes">
+        <li><span class="check">✓</span> Todo el plan Starter</li>
+        <li><span class="check">✓</span> Mejor estructura visual</li>
+        <li><span class="check">✓</span> Copywriting básico</li>
+        <li><span class="check">✓</span> Galería de servicios/fotos</li>
+        <li><span class="check">✓</span> Sección de testimonios</li>
+        <li><span class="check">✓</span> CTAs estratégicos</li>
+        <li><span class="check">✓</span> Optimización móvil avanzada</li>
+        <li><span class="check">✓</span> Branding más trabajado</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="card-plan">Digital Completo</div>
+      <div class="card-price">$1,799 <span class="card-currency">MXN</span></div>
+      <div class="card-time">Entrega en 15–20 días hábiles</div>
+      <ul class="card-includes">
+        <li><span class="check">✓</span> Todo el plan Premium</li>
+        <li><span class="check">✓</span> Landing page premium</li>
+        <li><span class="check">✓</span> Branding visual inicial</li>
+        <li><span class="check">✓</span> Recursos visuales básicos</li>
+        <li><span class="check">✓</span> Plan de contenido 30 días</li>
+        <li><span class="check">✓</span> Guía de presencia digital</li>
+        <li><span class="check">✓</span> Sesión de orientación digital</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EXTRAS -->
+  <table class="extras-table">
+    <thead>
+      <tr>
+        <th>Servicio adicional</th>
+        <th style="text-align:right;">Costo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Cambios después de entrega</td><td>+$200 MXN / ronda</td></tr>
+      <tr><td>Entrega urgente (menos de 48 h)</td><td>+30% del total</td></tr>
+      <tr><td>Dominio personalizado (.mx o .com)</td><td>Costo adicional</td></tr>
+      <tr><td>Hosting premium anual</td><td>Costo adicional</td></tr>
+    </tbody>
+  </table>
+
+  <!-- GUARANTEES -->
+  <div class="guarantees">
+    <div class="guarantee-item">
+      <div class="guarantee-icon">⭐</div>
+      <div>
+        <div class="guarantee-title">2 rondas de cambios incluidas</div>
+        <div class="guarantee-desc">Ajustamos hasta que quede perfecto.</div>
+      </div>
+    </div>
+    <div class="guarantee-item">
+      <div class="guarantee-icon">✅</div>
+      <div>
+        <div class="guarantee-title">50% anticipo · 50% al entregar</div>
+        <div class="guarantee-desc">No pagas todo por adelantado.</div>
+      </div>
+    </div>
+    <div class="guarantee-item">
+      <div class="guarantee-icon">⚡</div>
+      <div>
+        <div class="guarantee-title">Respondemos en &lt; 24 horas</div>
+        <div class="guarantee-desc">Sin esperas ni silencio radio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <span>© 2025 Axolote Studio · Parte del ecosistema <strong>Social Ventura</strong></span>
+    <span>Precios en MXN · IVA no incluido · Válido sujeto a disponibilidad</span>
+  </div>
+
+</div>
+
+<!-- ========================= PÁGINA 2: PROCESO ========================= -->
+<div class="page page-break">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-brand">
+      <img src="../logos/Favicon de Axolote Studio.png" alt="Axolote Studio" />
+      <div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:15px; color:#0a0a0a;">Axolote Studio</div>
+        <div class="header-tagline">Estudio Creativo &amp; Digital</div>
+      </div>
+    </div>
+    <div class="header-contact">
+      <strong>WhatsApp:</strong> 993 222 8936<br />
+      <strong>Email:</strong> hola@axolotestudio.mx<br />
+      <strong>Web:</strong> axolotestudio.mx
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero-strip">
+    <div>
+      <h1>Cómo trabajamos</h1>
+      <p>Simple, claro y sin sorpresas. Desde el primer mensaje hasta la entrega final.</p>
+    </div>
+    <div class="badge-date">5 pasos · 100% remoto</div>
+  </div>
+
+  <!-- PROCESS STEPS -->
+  <div class="section-label">🔄 Proceso de trabajo</div>
+  <div class="section-h2" style="margin-bottom:16px;">5 pasos para tu proyecto</div>
+
+  <div class="steps-list">
+    <div class="step-item">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-title">💬 Nos contactas</div>
+        <div class="step-desc">Escríbenos por WhatsApp o llena el formulario en nuestra web. Te respondemos en menos de 24 horas, con un saludo real. Sin bots.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-title">🧠 Entendemos tu proyecto</div>
+        <div class="step-desc">Hablamos de tu evento o negocio para entender exactamente qué necesitas. Preguntas simples, sin tecnicismos. Sin presión.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-title">📋 Cotizamos claro</div>
+        <div class="step-desc">Te enviamos una cotización escrita con qué incluye, qué no incluye, tiempo de entrega y forma de pago. Sin sorpresas.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">04</div>
+      <div>
+        <div class="step-title">🎨 Producimos juntos</div>
+        <div class="step-desc">Trabajamos con comunicación constante. Te mantenemos al tanto: inicio, avance intermedio y vista previa antes de entrega. Hasta 2 rondas de ajuste incluidas.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">05</div>
+      <div>
+        <div class="step-title">🚀 Entregamos y te acompañamos</div>
+        <div class="step-desc">Recibes el proyecto terminado con explicación completa. Resolvemos todas tus dudas. Cierre con pago final. Postventa disponible.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- FAQ -->
+  <div class="section-label">❓ Preguntas frecuentes</div>
+  <div class="section-h2" style="margin-bottom:14px;">Lo que más nos preguntan</div>
+
+  <table style="width:100%; border-collapse:collapse; font-size:11px;">
+    <tbody>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 0; vertical-align:top; width:40%; font-weight:600; color:#1f2937; padding-right:16px;">¿Cuánto tiempo tardan los proyectos?</td>
+        <td style="padding:8px 0; color:#4b5563; vertical-align:top;">Invitaciones: 4–10 días hábiles. Landing pages: 7–20 días hábiles. Entrega urgente disponible con cargo adicional del 30%.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 0; vertical-align:top; font-weight:600; color:#1f2937; padding-right:16px;">¿Puedo hacer cambios después de la entrega?</td>
+        <td style="padding:8px 0; color:#4b5563; vertical-align:top;">Incluimos 2 rondas de cambios en el proceso. Cambios post-entrega tienen un costo de $200 MXN por ronda.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 0; vertical-align:top; font-weight:600; color:#1f2937; padding-right:16px;">¿Necesito dar anticipo?</td>
+        <td style="padding:8px 0; color:#4b5563; vertical-align:top;">Sí. 50% al inicio y 50% al entregar. Proyectos premium pueden ser 60%/40%.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 0; vertical-align:top; font-weight:600; color:#1f2937; padding-right:16px;">¿Qué necesito para empezar?</td>
+        <td style="padding:8px 0; color:#4b5563; vertical-align:top;">Para invitaciones: nombres, fecha, dirección, fotos y referencia visual. Para negocios: logo si tienes, fotos, lista de servicios y número de WhatsApp.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 0; vertical-align:top; font-weight:600; color:#1f2937; padding-right:16px;">¿Trabajan con clientes de todo el país?</td>
+        <td style="padding:8px 0; color:#4b5563; vertical-align:top;">Sí. Servicio 100% remoto. Atendemos clientes de cualquier parte de México.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider" />
+
+  <!-- CTA BOX -->
+  <div style="background:linear-gradient(135deg,#1B4FD8,#1438A6); border-radius:12px; padding:18px 20px; color:#fff; display:flex; align-items:center; justify-content:space-between; margin-top:4px;">
+    <div>
+      <div style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:15px; margin-bottom:4px;">¿Listo para empezar?</div>
+      <div style="font-size:10.5px; color:rgba(255,255,255,0.75);">Un mensaje es todo lo que necesitas. El resto lo manejamos nosotros.</div>
+    </div>
+    <div style="text-align:right; flex-shrink:0; padding-left:16px;">
+      <div style="background:#25D366; border-radius:8px; padding:8px 16px; font-size:11px; font-weight:700; margin-bottom:6px;">📱 WhatsApp: 993 222 8936</div>
+      <div style="font-size:10px; color:rgba(255,255,255,0.65);">hola@axolotestudio.mx</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <span>© 2025 Axolote Studio · Parte del ecosistema <strong>Social Ventura</strong></span>
+    <span>Documento informativo · Precios en MXN · Sujeto a disponibilidad</span>
+  </div>
+
+</div>
+
+</body>
+</html>
