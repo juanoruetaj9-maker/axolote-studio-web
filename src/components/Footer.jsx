@@ -41,7 +41,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 mt-5">
               <a
-                href="https://instagram.com/axolotestudio"
+                href="https://www.instagram.com/axolote_studio_digital"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand flex items-center justify-center transition-colors"
@@ -50,7 +50,7 @@ export default function Footer() {
                 <IgIcon />
               </a>
               <a
-                href="https://facebook.com/axolotestudio"
+                href="https://www.facebook.com/profile.php?id=61590476165059"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand flex items-center justify-center transition-colors"

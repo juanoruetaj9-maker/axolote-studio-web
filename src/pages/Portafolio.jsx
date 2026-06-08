@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MapPin, Tag } from 'lucide-react'
+import { ArrowRight, MapPin, ExternalLink } from 'lucide-react'
 import { proyectos, categorias } from '../data/proyectos'
 
 export default function Portafolio() {
@@ -50,22 +50,39 @@ export default function Portafolio() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filtrados.map((p) => (
-              <div
+              <Link
                 key={p.id}
+                to={p.slug ? `/portafolio/${p.slug}` : '#'}
                 className="card-hover group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col"
               >
-                {/* Cover */}
-                <div
-                  className={`bg-gradient-to-br ${p.gradient} h-44 flex items-center justify-center relative`}
-                >
-                  <span className="text-5xl">{p.icon}</span>
-                  <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-semibold px-2.5 py-1 rounded-full text-gray-700">
-                    {p.paquete}
-                  </span>
-                  <span className="absolute top-3 right-3 bg-black/10 backdrop-blur-sm text-xs font-medium px-2.5 py-1 rounded-full text-gray-700">
-                    {p.categoria}
-                  </span>
-                </div>
+                {/* Cover — foto real si existe, fallback a gradiente */}
+                {p.imagen ? (
+                  <div className="h-44 overflow-hidden relative">
+                    <img
+                      src={p.imagen}
+                      alt={p.titulo}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-semibold px-2.5 py-1 rounded-full text-gray-700">
+                      {p.paquete}
+                    </span>
+                    <span className="absolute top-3 right-3 bg-black/30 backdrop-blur-sm text-xs font-medium px-2.5 py-1 rounded-full text-white">
+                      {p.categoria}
+                    </span>
+                  </div>
+                ) : (
+                  <div
+                    className={`bg-gradient-to-br ${p.gradient} h-44 flex items-center justify-center relative`}
+                  >
+                    <span className="text-5xl">{p.icon}</span>
+                    <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-semibold px-2.5 py-1 rounded-full text-gray-700">
+                      {p.paquete}
+                    </span>
+                    <span className="absolute top-3 right-3 bg-black/10 backdrop-blur-sm text-xs font-medium px-2.5 py-1 rounded-full text-gray-700">
+                      {p.categoria}
+                    </span>
+                  </div>
+                )}
 
                 {/* Content */}
                 <div className="p-5 flex flex-col flex-1">
@@ -79,7 +96,7 @@ export default function Portafolio() {
                   </p>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {p.tags.map((tag) => (
                       <span
                         key={tag}
@@ -89,8 +106,16 @@ export default function Portafolio() {
                       </span>
                     ))}
                   </div>
+
+                  {/* Ver proyecto */}
+                  {p.slug && (
+                    <div className="flex items-center gap-1 text-brand text-xs font-semibold group-hover:gap-2 transition-all">
+                      <ExternalLink size={12} />
+                      Ver proyecto completo
+                    </div>
+                  )}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

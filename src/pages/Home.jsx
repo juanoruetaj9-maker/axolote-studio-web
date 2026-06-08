@@ -14,21 +14,21 @@ const servicios = [
     icon: <Sparkles size={24} className="text-coral" />,
     title: 'Invitaciones Web Premium',
     desc: 'Experiencias visuales elegantes y memorables para tu boda, XV años, graduación o cualquier celebración especial.',
-    href: '/servicios',
-    desde: '$699 MXN',
+    href: '/demo/invitaciones',
+    desde: '$499 MXN',
   },
   {
     icon: <Globe size={24} className="text-brand" />,
     title: 'Landing Pages para Negocios',
     desc: 'Presencia digital profesional para tu negocio. Tu restaurante, clínica, hotel o empresa merece verse serio en internet.',
-    href: '/servicios',
-    desde: '$799 MXN',
+    href: '/demo/landing-pages',
+    desde: '$1,090 MXN',
   },
   {
     icon: <Palette size={24} className="text-brand" />,
     title: 'Branding e Imagen Visual',
     desc: 'Logotipo, colores, tipografía y recursos visuales que hacen que tu marca inspire confianza desde el primer vistazo.',
-    href: '/servicios',
+    href: '/demo/branding',
     desde: '$799 MXN',
   },
 ]
@@ -39,18 +39,21 @@ const testimonios = [
     rol: 'Boda en Mérida',
     texto: 'Quedé encantada con mi invitación web. Mis invitados no podían creer que era tan bonita y profesional. Todo el proceso fue muy fácil y me explicaron todo.',
     stars: 5,
+    avatar: '/imagenes/home/testimonios/ana.jpg',
   },
   {
     nombre: 'Dr. Carlos López',
     rol: 'Clínica Dental, Villahermosa',
     texto: 'Mi clínica ahora tiene una página que realmente transmite confianza. Los pacientes me dicen que se ven muy profesionales. Valió completamente la pena.',
     stars: 5,
+    avatar: '/imagenes/home/testimonios/carlos.jpg',
   },
   {
     nombre: 'Sofía Ramírez',
     rol: 'XV Años, Villahermosa',
     texto: 'La invitación quedó exactamente como la imaginé. Muy bonita, con animaciones y todo. Todos me preguntaron quién la hizo. ¡100% recomendado!',
     stars: 5,
+    avatar: '/imagenes/home/testimonios/sofia.jpg',
   },
 ]
 
@@ -107,13 +110,17 @@ export default function Home() {
               {/* Trust signal */}
               <div className="mt-8 flex items-center gap-2 justify-center lg:justify-start">
                 <div className="flex -space-x-1">
-                  {['🙋', '👩‍💼', '👨‍💼'].map((e, i) => (
-                    <div
+                  {[
+                    '/imagenes/home/testimonios/ana.jpg',
+                    '/imagenes/home/testimonios/sofia.jpg',
+                    '/imagenes/home/testimonios/carlos.jpg',
+                  ].map((src, i) => (
+                    <img
                       key={i}
-                      className="w-8 h-8 rounded-full bg-brand-light border-2 border-white flex items-center justify-center text-sm"
-                    >
-                      {e}
-                    </div>
+                      src={src}
+                      alt=""
+                      className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                    />
                   ))}
                 </div>
                 <p className="text-sm text-gray-500">
@@ -262,22 +269,36 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredProjects.map((p) => (
-              <div
+              <Link
                 key={p.id}
-                className="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100"
+                to={p.slug ? `/portafolio/${p.slug}` : '/portafolio'}
+                className="card-hover group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100"
               >
-                <div className={`bg-gradient-to-br ${p.gradient} h-44 flex items-center justify-center relative`}>
-                  <span className="text-5xl">{p.icon}</span>
-                  <span className="absolute top-3 right-3 bg-white/90 text-xs font-semibold px-2.5 py-1 rounded-full text-gray-700">
-                    {p.categoria}
-                  </span>
-                </div>
+                {p.imagen ? (
+                  <div className="h-44 overflow-hidden relative">
+                    <img
+                      src={p.imagen}
+                      alt={p.titulo}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-xs font-semibold px-2.5 py-1 rounded-full text-gray-700">
+                      {p.categoria}
+                    </span>
+                  </div>
+                ) : (
+                  <div className={`bg-gradient-to-br ${p.gradient} h-44 flex items-center justify-center relative`}>
+                    <span className="text-5xl">{p.icon}</span>
+                    <span className="absolute top-3 right-3 bg-white/90 text-xs font-semibold px-2.5 py-1 rounded-full text-gray-700">
+                      {p.categoria}
+                    </span>
+                  </div>
+                )}
                 <div className="p-5">
                   <h3 className="font-display font-bold text-gray-900 mb-1">{p.titulo}</h3>
                   <p className="text-xs text-gray-400 mb-3">{p.ubicacion}</p>
                   <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">{p.descripcion}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -304,9 +325,16 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-gray-700 text-sm leading-relaxed mb-5 italic">"{t.texto}"</p>
-                <div>
-                  <p className="font-semibold text-gray-900 text-sm">{t.nombre}</p>
-                  <p className="text-xs text-gray-400">{t.rol}</p>
+                <div className="flex items-center gap-3">
+                  <img
+                    src={t.avatar}
+                    alt={t.nombre}
+                    className="w-10 h-10 rounded-full object-cover shrink-0"
+                  />
+                  <div>
+                    <p className="font-semibold text-gray-900 text-sm">{t.nombre}</p>
+                    <p className="text-xs text-gray-400">{t.rol}</p>
+                  </div>
                 </div>
               </div>
             ))}

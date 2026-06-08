@@ -1,7 +1,10 @@
-import { Link } from 'react-router-dom'
-import { Check, ArrowRight, Zap, Star } from 'lucide-react'
+import { Check, X, ArrowRight, Zap, Star } from 'lucide-react'
 
-function PriceCard({ plan, price, includes, badge, highlight, time, nota }) {
+const WA = 'https://wa.me/529932228936'
+
+function PriceCard({ plan, price, includes, excludes, badge, highlight, time }) {
+  const waLink = `${WA}?text=${encodeURIComponent(`Hola, me interesa el ${plan} de Axolote Studio`)}`
+
   return (
     <div
       className={`relative rounded-2xl p-7 flex flex-col h-full transition-all ${
@@ -49,7 +52,7 @@ function PriceCard({ plan, price, includes, badge, highlight, time, nota }) {
         )}
       </div>
 
-      <ul className="flex flex-col gap-2.5 mb-8 flex-1">
+      <ul className="flex flex-col gap-2.5 flex-1">
         {includes.map((item, i) => (
           <li key={i} className="flex items-start gap-2.5 text-sm">
             <Check
@@ -59,33 +62,39 @@ function PriceCard({ plan, price, includes, badge, highlight, time, nota }) {
             <span className={highlight ? 'text-blue-50' : 'text-gray-600'}>{item}</span>
           </li>
         ))}
+        {excludes && excludes.map((item, i) => (
+          <li key={`ex-${i}`} className="flex items-start gap-2.5 text-sm">
+            <X
+              size={16}
+              className={`shrink-0 mt-0.5 ${highlight ? 'text-blue-400' : 'text-gray-300'}`}
+            />
+            <span className={highlight ? 'text-blue-300' : 'text-gray-400'}>{item}</span>
+          </li>
+        ))}
       </ul>
 
-      {nota && (
-        <p className={`text-xs mb-4 ${highlight ? 'text-blue-200' : 'text-gray-400'}`}>
-          * {nota}
-        </p>
-      )}
-
-      <Link
-        to="/contacto"
-        className={`block w-full text-center py-3 rounded-full font-semibold text-sm transition-all ${
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`block w-full text-center py-3 rounded-full font-semibold text-sm transition-all mt-8 ${
           highlight
             ? 'bg-white text-brand hover:bg-blue-50'
             : 'bg-brand text-white hover:bg-brand-dark'
         }`}
       >
         Cotizar este plan
-      </Link>
+      </a>
     </div>
   )
 }
 
-const extras = [
-  { label: 'Cambios después de entrega', precio: '+$200 MXN' },
-  { label: 'Entrega urgente (menos de 48h)', precio: '+30% del total' },
-  { label: 'Dominio personalizado (.mx o .com)', precio: 'Costo adicional' },
-  { label: 'Hosting premium anual', precio: 'Costo adicional' },
+const cambios = [
+  { condicion: 'Primeros 2 cambios', costo: 'Gratuitos' },
+  { condicion: 'Cambio menor (desde el 3ro)', costo: '$100 MXN' },
+  { condicion: 'Cambio intermedio (desde el 3ro)', costo: '$200 MXN' },
+  { condicion: 'Cambio mayor (desde el 3ro)', costo: '$300 MXN' },
+  { condicion: 'Errores propios del estudio', costo: 'Sin costo' },
 ]
 
 export default function Servicios() {
@@ -101,7 +110,7 @@ export default function Servicios() {
             Todo claro, sin sorpresas
           </h1>
           <p className="text-gray-500 max-w-xl mx-auto text-base leading-relaxed">
-            Precios transparentes y paquetes diseñados para cualquier negocio. No vendemos tecnología, vendemos resultados.
+            Precios transparentes y paquetes diseñados para cualquier evento o negocio. No vendemos tecnología, vendemos resultados.
           </p>
         </div>
       </section>
@@ -112,10 +121,10 @@ export default function Servicios() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-coral-light text-coral px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
               <span className="text-lg">💍</span>
-              Línea A — Experiencias Premium
+              Línea A — Invitaciones Web
             </div>
             <h2 className="section-heading text-2xl md:text-3xl text-gray-950 mb-3">
-              Invitaciones Web Premium
+              Invitaciones Digitales para Eventos
             </h2>
             <p className="text-gray-500 max-w-lg mx-auto text-sm">
               Para tu boda, XV años, graduación o cualquier celebración especial. Tu evento merece una experiencia visual tan elegante como la ocasión.
@@ -125,127 +134,169 @@ export default function Servicios() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <PriceCard
               plan="Paquete Esencial"
-              price="$699"
-              time="Entrega en 4–7 días hábiles"
+              price="$499"
+              time="Entrega: 6 días hábiles desde recepción de datos"
               includes={[
                 'Diseño visual personalizado',
-                'Página web de invitación',
                 'Información del evento',
-                'Ubicación en mapa',
                 'Cuenta regresiva',
-                'Galería simple',
-                'Botón de WhatsApp',
-                'Música opcional',
-                'Código QR del evento',
+                'Ubicación con mapa',
+                'Galería simple (hasta 6 fotos)',
+                'Botón WhatsApp',
+                'Música de fondo',
+                'QR del evento',
+              ]}
+              excludes={[
+                'RSVP',
+                'Historia de pareja',
+                'Animaciones premium',
+                'Dominio personalizado',
               ]}
             />
             <PriceCard
-              plan="Paquete Premium"
+              plan="Paquete Experiencia"
               price="$999"
-              time="Entrega en 5–10 días hábiles"
+              time="Entrega: 6 días hábiles desde recepción de datos"
               badge="Más popular"
               highlight
               includes={[
-                'Todo el paquete Esencial',
-                'RSVP de confirmación',
-                'Galería de fotos premium',
-                'Animaciones suaves',
-                'Código de vestimenta',
-                'Información de hospedaje',
-                'Historia de pareja o graduado',
-                'Playlist de Spotify',
-                'Personalización visual extra',
+                'Todo el Paquete Esencial',
+                'RSVP vía Google Sheets',
+                'Historia de pareja o sección extra',
+                'Galería premium (hasta 20 fotos)',
+                'Animaciones y diseño elaborado',
+                'Dress code y hospedaje',
+                'Playlist Spotify integrada',
+              ]}
+              excludes={[
+                'Dominio personalizado',
               ]}
             />
           </div>
         </div>
       </section>
 
-      {/* LÍNEA B — Negocios */}
+      {/* LÍNEA B — Landing Pages */}
       <section className="py-16 md:py-20 bg-sand">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-brand-light text-brand px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
               <span className="text-lg">🏢</span>
-              Línea B — Presencia Digital
+              Línea B — Landing Pages
             </div>
             <h2 className="section-heading text-2xl md:text-3xl text-gray-950 mb-3">
-              Landing Pages para Negocios
+              Presencia Digital para Negocios
             </h2>
             <p className="text-gray-500 max-w-lg mx-auto text-sm">
               Para restaurantes, clínicas, hoteles, abogados, barberías y cualquier negocio que quiera verse serio en internet.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <PriceCard
-              plan="Starter"
-              price="$799"
-              time="Entrega en 7–10 días hábiles"
+              plan="Paquete Presencia"
+              price="$1,090"
+              time="Entrega: 6 días hábiles desde recepción de datos"
               includes={[
-                'Landing page funcional',
-                'Branding visual básico',
-                'Colores y tipografía',
-                'Botón WhatsApp directo',
-                'Sección de ubicación',
-                'Contacto rápido',
+                'Página principal + 3 páginas secundarias',
+                'Branding visual básico aplicado',
+                'Dominio personalizado incluido',
+                'Hosting gratuito en Netlify',
+                'WhatsApp y contacto rápido',
+                'Ubicación con mapa',
                 'Diseño 100% responsive',
+                'SSL incluido',
+              ]}
+              excludes={[
+                'Hosting de pago',
+                'Páginas adicionales',
+                'Copywriting',
+                'SEO',
               ]}
             />
             <PriceCard
-              plan="Premium"
-              price="$1,299"
-              time="Entrega en 10–15 días hábiles"
-              badge="Más popular"
+              plan="Paquete Marca Digital"
+              price="$1,990"
+              time="Entrega: 6 días hábiles desde recepción de datos"
+              badge="Más completo"
               highlight
               includes={[
-                'Todo el plan Starter',
-                'Mejor estructura visual',
-                'Copywriting básico',
-                'Galería de servicios/fotos',
-                'Sección de testimonios',
-                'CTAs estratégicos',
+                'Todo el Paquete Presencia',
+                'Hosting 1 año incluido',
+                'Hasta 6 páginas en total',
+                'Copywriting básico incluido',
+                'CTAs estratégicos por página',
                 'Optimización móvil avanzada',
-                'Branding más trabajado',
+                'SEO básico (meta tags, descripciones, velocidad)',
               ]}
-            />
-            <PriceCard
-              plan="Digital Inicial Completo"
-              price="$1,799"
-              time="Entrega en 15–20 días hábiles"
-              includes={[
-                'Todo el plan Premium',
-                'Landing page premium',
-                'Branding visual inicial',
-                'Recursos visuales básicos',
-                'Plan de contenido 30 días',
-                'Guía de presencia digital',
-                'Asesoría de imagen inicial',
-              ]}
-              nota="Incluye sesión de orientación digital"
             />
           </div>
         </div>
       </section>
 
-      {/* EXTRAS */}
-      <section className="py-14 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-heading text-2xl text-gray-950 text-center mb-8">
-            Servicios adicionales
+      {/* Demo personalizada */}
+      <section className="py-14 px-6 bg-brand-light border-t border-brand-subtle">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="inline-block bg-brand text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+            Nuevo · Demo personalizada
+          </span>
+          <h2 className="section-heading text-2xl md:text-3xl text-gray-950 mb-3">
+            Mira cómo quedaría tu proyecto antes de contratar
           </h2>
-          <div className="divide-y divide-gray-100 border border-gray-100 rounded-2xl overflow-hidden">
-            {extras.map(({ label, precio }) => (
-              <div key={label} className="flex items-center justify-between px-6 py-4 bg-white hover:bg-gray-50 transition-colors">
-                <span className="text-sm text-gray-700">{label}</span>
-                <span className="text-sm font-semibold text-brand">{precio}</span>
+          <p className="text-gray-500 text-sm max-w-xl mx-auto mb-6 leading-relaxed">
+            Antes de pagar un solo peso, te mostramos una <strong>demo funcional con tu información real</strong> — tu nombre, tu fecha, tu evento o tu negocio. Con imágenes genéricas pero con todos los datos tuyos. Para que veas exactamente lo que recibirás.
+          </p>
+          <div className="grid md:grid-cols-3 gap-4 mb-8 text-left">
+            {[
+              { icon: '🎯', title: 'Con tu información', desc: 'Nombre, fecha, lugar, evento — todo real. Solo las fotos son genéricas.' },
+              { icon: '⚡', title: 'Lista en 24–48 horas', desc: 'Te la enviamos rápido para que puedas decidir sin presión.' },
+              { icon: '🆓', title: 'Sin costo', desc: 'La demo es gratis. Solo contratas si quedas convencido.' },
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="bg-white rounded-xl p-5 shadow-sm border border-brand-subtle">
+                <span className="text-2xl mb-3 block">{icon}</span>
+                <p className="font-semibold text-gray-900 text-sm mb-1">{title}</p>
+                <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
+          <a
+            href={`https://wa.me/529932228936?text=${encodeURIComponent('Hola, me gustaría solicitar una demo personalizada antes de contratar. ¿Cómo funciona?')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand text-white font-semibold rounded-full hover:bg-brand-dark transition-all text-sm shadow-md"
+          >
+            Solicitar mi demo gratis <ArrowRight size={15} />
+          </a>
         </div>
       </section>
 
-      {/* FAQ rápida */}
+      {/* Política de cambios */}
+      <section className="py-14 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="section-heading text-2xl text-gray-950 text-center mb-2">
+            Política de cambios post-entrega
+          </h2>
+          <p className="text-center text-gray-400 text-sm mb-8">
+            Aplica para todos los paquetes
+          </p>
+          <div className="divide-y divide-gray-100 border border-gray-100 rounded-2xl overflow-hidden">
+            {cambios.map(({ condicion, costo }) => (
+              <div
+                key={condicion}
+                className="flex items-center justify-between px-6 py-4 bg-white hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-sm text-gray-700">{condicion}</span>
+                <span className="text-sm font-semibold text-brand">{costo}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-400 mt-3 text-center">
+            Los errores cometidos por el estudio se corrigen sin consumir créditos de cambio.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA orientación */}
       <section className="py-12 bg-sand border-t border-sand-dark">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <div className="flex items-center gap-3 justify-center mb-4">
@@ -257,12 +308,14 @@ export default function Servicios() {
           <p className="text-gray-500 text-sm mb-6">
             Cuéntanos tu proyecto y te recomendamos el paquete ideal sin costo y sin compromisos.
           </p>
-          <Link
-            to="/contacto"
+          <a
+            href={`${WA}?text=${encodeURIComponent('Hola, necesito orientación para elegir un paquete de Axolote Studio')}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand text-white font-semibold rounded-full hover:bg-brand-dark transition-all text-sm shadow-md"
           >
             Pedir orientación gratuita <ArrowRight size={15} />
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -270,7 +323,7 @@ export default function Servicios() {
       <section className="py-10 bg-brand-light border-t border-brand-subtle">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: <Star size={18} className="text-yellow-500" fill="currentColor" />, title: '2 rondas de cambios incluidas', desc: 'Ajustamos hasta que quede perfecto.' },
+            { icon: <Star size={18} className="text-yellow-500" fill="currentColor" />, title: '2 cambios gratuitos incluidos', desc: 'Ajustamos hasta que quede perfecto.' },
             { icon: <Check size={18} className="text-green-500" />, title: '50% anticipo, 50% al entregar', desc: 'No pagás todo por adelantado.' },
             { icon: <Zap size={18} className="text-brand" />, title: 'Respondemos en menos de 48h', desc: 'Sin esperas ni silencio radio.' },
           ].map(({ icon, title, desc }) => (

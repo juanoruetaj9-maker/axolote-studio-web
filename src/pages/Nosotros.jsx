@@ -48,21 +48,12 @@ export default function Nosotros() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Visual */}
             <div className="order-2 lg:order-1">
-              <div className="bg-gradient-to-br from-brand-light to-brand-subtle rounded-3xl p-10 text-center relative overflow-hidden">
-                <div
-                  className="absolute inset-0 opacity-5"
-                  style={{
-                    backgroundImage:
-                      'radial-gradient(circle at 30% 30%, rgba(27,79,216,1) 0%, transparent 50%)',
-                  }}
-                />
+              <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]">
                 <img
-                  src="/logos/Imagotipo.png"
-                  alt="Axolote Studio"
-                  className="h-32 w-auto mx-auto object-contain relative z-10"
+                  src="/imagenes/nosotros/studio.jpg"
+                  alt="Equipo Axolote Studio"
+                  className="w-full h-full object-cover"
                 />
-                <p className="mt-6 text-brand font-semibold text-sm">Estudio Creativo & Digital</p>
-                <p className="text-gray-500 text-xs mt-1">México · 100% remoto</p>
               </div>
             </div>
 
