@@ -1,31 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { MapPin, Heart, Music, Camera, ChevronDown } from 'lucide-react'
 import DemoBanner from '../components/DemoBanner'
+import { useCountdown } from '../hooks/useCountdown'
 
 const WA = `https://wa.me/529932228936?text=${encodeURIComponent('Hola! Vi el ejemplo de invitación web y me encantó. Me gustaría una para mi evento.')}`
 const TARGET = new Date('2026-09-19T18:00:00')
 
 const SERIF = { fontFamily: "'Cormorant Garamond', Georgia, serif" }
-
-function useCountdown(target) {
-  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  useEffect(() => {
-    const tick = () => {
-      const diff = target - Date.now()
-      if (diff <= 0) return
-      setTime({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      })
-    }
-    tick()
-    const id = setInterval(tick, 1000)
-    return () => clearInterval(id)
-  }, [target])
-  return time
-}
 
 const gallery = [
   { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80', alt: 'Pareja' },

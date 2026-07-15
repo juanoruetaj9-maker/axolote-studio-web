@@ -1,24 +1,11 @@
-import { useState, useEffect } from 'react'
 import { MapPin, ChevronDown, Star } from 'lucide-react'
 import DemoBanner from '../components/DemoBanner'
 import MusicPlayerMock from '../components/MusicPlayerMock'
+import { useCountdown } from '../hooks/useCountdown'
 
 const TARGET = new Date('2026-08-15T19:00:00')
 const PURPLE = '#7C3AED'
 const SERIF = { fontFamily: 'Georgia, serif' }
-
-function useCountdown(target) {
-  const [s, setS] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  useEffect(() => {
-    const tick = () => {
-      const d = target - Date.now()
-      if (d <= 0) return
-      setS({ days: Math.floor(d / 86400000), hours: Math.floor((d % 86400000) / 3600000), minutes: Math.floor((d % 3600000) / 60000), seconds: Math.floor((d % 60000) / 1000) })
-    }
-    tick(); const id = setInterval(tick, 1000); return () => clearInterval(id)
-  }, [target])
-  return s
-}
 
 const GALLERY = [
   'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80',
