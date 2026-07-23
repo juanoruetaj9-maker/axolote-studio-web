@@ -1,25 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { MapPin, ChevronDown, GraduationCap, Heart } from 'lucide-react'
 import DemoBanner from '../components/DemoBanner'
 import MusicPlayerMock from '../components/MusicPlayerMock'
+import { useCountdown } from '../hooks/useCountdown'
 
 const TARGET = new Date('2026-07-25T18:00:00')
 const WA = `https://wa.me/529932228936?text=${encodeURIComponent('Hola, confirmo mi asistencia a la graduación de Emmanuel el 25 de julio 🎓')}`
 const BLUE = '#1B4FD8'
 const SERIF = { fontFamily: "'Cormorant Garamond', Georgia, serif" }
-
-function useCountdown(target) {
-  const [s, setS] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  useEffect(() => {
-    const tick = () => {
-      const d = target - Date.now()
-      if (d <= 0) return
-      setS({ days: Math.floor(d / 86400000), hours: Math.floor((d % 86400000) / 3600000), minutes: Math.floor((d % 3600000) / 60000), seconds: Math.floor((d % 60000) / 1000) })
-    }
-    tick(); const id = setInterval(tick, 1000); return () => clearInterval(id)
-  }, [target])
-  return s
-}
 
 const GALLERY = [
   'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=700&q=80',
