@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { proyectos } from '../data/proyectos'
+import { paquetes } from '../data/paquetes'
+
+const precioDesde = Math.min(...paquetes.map((p) => p.precio))
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
@@ -24,7 +27,7 @@ const servicios = [
     title: 'Invitaciones Web',
     detail: 'Boda · XV Años · Baby Shower · Cumpleaños Especial',
     desc: 'Experiencias digitales tan elegantes que tus invitados las guardan.',
-    price: 'Desde $499 MXN',
+    price: `Desde $${precioDesde.toLocaleString('es-MX')} MXN`,
     href: '/demo/invitaciones',
     img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80',
   },

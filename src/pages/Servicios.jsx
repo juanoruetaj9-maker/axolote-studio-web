@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
-import { Check, X, ArrowRight, Zap, Star, Heart } from 'lucide-react'
+import { Check, ArrowRight, Zap, Star, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { paquetes } from '../data/paquetes'
+import PaquetesDemo from '../components/PaquetesDemo'
 
 const WA = 'https://wa.me/529932228936'
 
@@ -11,12 +13,14 @@ const inView = {
   transition: { duration: 0.6 },
 }
 
-function PriceCard({ plan, price, includes, excludes, badge, highlight, time }) {
-  const waLink = `${WA}?text=${encodeURIComponent(`Hola, me interesa el ${plan} de Axolote Studio`)}`
+const formatMXN = (n) => `$${n.toLocaleString('es-MX')}`
+
+function PriceCard({ nombre, precio, entrega, incluye, badge, destacado }) {
+  const waLink = `${WA}?text=${encodeURIComponent(`Hola, me interesa el paquete ${nombre} de Axolote Studio`)}`
 
   return (
     <div className={`relative rounded-2xl p-7 flex flex-col h-full bg-white shadow-sm transition-all duration-200 ${
-      highlight
+      destacado
         ? 'border border-[#FF2D78]/50'
         : 'border border-black/8'
     }`}>
@@ -29,32 +33,26 @@ function PriceCard({ plan, price, includes, excludes, badge, highlight, time }) 
       )}
 
       <div className="mb-6">
-        <h3 className="font-display font-bold text-xl text-[#111] mb-3">{plan}</h3>
+        <h3 className="font-display font-bold text-xl text-[#111] mb-3">Paquete {nombre}</h3>
         <div className="flex items-end gap-1">
-          <span className="font-display font-black text-4xl text-[#FF2D78]">{price}</span>
+          <span className="font-display font-black text-4xl text-[#FF2D78]">{formatMXN(precio)}</span>
           <span className="text-sm mb-1 text-[#999]">MXN</span>
         </div>
-        {time && <p className="text-xs mt-1.5 text-[#999] leading-relaxed">{time}</p>}
+        <p className="text-xs mt-1.5 text-[#999] leading-relaxed">Entrega: {entrega} desde recepción de datos</p>
       </div>
 
       <ul className="flex flex-col gap-2.5 flex-1">
-        {includes.map((item, i) => (
+        {incluye.map((item, i) => (
           <li key={i} className="flex items-start gap-2.5 text-sm">
             <Check size={15} className="shrink-0 mt-0.5 text-[#FF2D78]" />
             <span className="text-[#555]">{item}</span>
-          </li>
-        ))}
-        {excludes && excludes.map((item, i) => (
-          <li key={`ex-${i}`} className="flex items-start gap-2.5 text-sm">
-            <X size={15} className="shrink-0 mt-0.5 text-[#ccc]" />
-            <span className="text-[#aaa]">{item}</span>
           </li>
         ))}
       </ul>
 
       <a href={waLink} target="_blank" rel="noopener noreferrer"
         className={`block w-full text-center py-3.5 rounded-xl font-bold text-sm transition-all mt-8 cursor-pointer ${
-          highlight
+          destacado
             ? 'bg-black text-white hover:bg-[#222]'
             : 'bg-[#FF2D78] text-white hover:bg-[#E0155F]'
         }`}
@@ -96,58 +94,26 @@ export default function Servicios() {
           <motion.div {...inView} className="mb-12">
             <div className="inline-flex items-center gap-2 bg-[#FF2D78]/10 text-[#FF2D78] border border-[#FF2D78]/20 px-4 py-1.5 rounded-full text-sm font-semibold mb-5">
               <Heart size={14} />
-              Línea A — Invitaciones Web
+              Invitaciones Web
             </div>
             <h2 className="font-display font-black text-[#111] text-3xl md:text-4xl tracking-tight mb-3">
               Invitaciones Digitales para Eventos
             </h2>
             <p className="text-[#555] max-w-lg text-sm leading-relaxed">
-              Para tu boda, XV años, graduación o cualquier celebración especial. Tu evento merece una experiencia visual tan elegante como la ocasión.
+              Para tu boda, XV años, baby shower o cumpleaños especial. Tu evento merece una experiencia visual tan elegante como la ocasión.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl">
-            <PriceCard
-              plan="Paquete Esencial"
-              price="$499"
-              time="Entrega: 6 días hábiles desde recepción de datos"
-              includes={[
-                'Diseño visual personalizado',
-                'Información del evento',
-                'Cuenta regresiva',
-                'Ubicación con mapa',
-                'Galería simple (hasta 6 fotos)',
-                'Botón WhatsApp',
-                'Música de fondo',
-                'QR del evento',
-              ]}
-              excludes={[
-                'RSVP',
-                'Historia de pareja',
-                'Animaciones premium',
-                'Dominio personalizado',
-              ]}
-            />
-            <PriceCard
-              plan="Paquete Experiencia"
-              price="$999"
-              time="Entrega: 6 días hábiles desde recepción de datos"
-              badge="Más popular"
-              highlight
-              includes={[
-                'Todo el Paquete Esencial',
-                'RSVP vía Google Sheets',
-                'Historia de pareja o sección extra',
-                'Galería premium (hasta 20 fotos)',
-                'Animaciones y diseño elaborado',
-                'Dress code y hospedaje',
-                'Playlist Spotify integrada',
-              ]}
-              excludes={['Dominio personalizado']}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {paquetes.map((p) => (
+              <PriceCard key={p.id} {...p} />
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Elige tu experiencia — demo interactiva */}
+      <PaquetesDemo />
 
       {/* Demo personalizada */}
       <motion.section {...inView} className="py-16 md:py-20" style={{ backgroundColor: '#FFFFFF' }}>
