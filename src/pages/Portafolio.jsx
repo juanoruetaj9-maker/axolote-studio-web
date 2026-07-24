@@ -17,7 +17,7 @@ export default function Portafolio() {
   const filtrados = filtro === 'Todos' ? proyectos : proyectos.filter((p) => p.categoria === filtro)
 
   return (
-    <div style={{ backgroundColor: '#080808' }}>
+    <div style={{ backgroundColor: '#F8F8F8' }}>
 
       {/* Header */}
       <section style={{ backgroundColor: '#080808' }} className="pt-14 pb-16 md:pt-20 md:pb-24">
@@ -35,7 +35,7 @@ export default function Portafolio() {
       </section>
 
       {/* Filter bar */}
-      <div className="sticky top-20 z-40 border-b border-white/8 py-3" style={{ backgroundColor: '#080808' }}>
+      <div className="sticky top-20 z-40 border-b border-black/8 py-3" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 flex items-center gap-2 overflow-x-auto">
           {categorias.map((cat) => (
             <button
@@ -44,7 +44,7 @@ export default function Portafolio() {
               className={`shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 filtro === cat
                   ? 'bg-[#FF2D78] text-white'
-                  : 'text-[#555] hover:text-white bg-transparent hover:bg-white/5'
+                  : 'text-[#555] hover:text-[#111] bg-transparent hover:bg-black/5'
               }`}
             >
               {cat}
@@ -54,11 +54,11 @@ export default function Portafolio() {
       </div>
 
       {/* Grid */}
-      <section className="py-10 md:py-14" style={{ backgroundColor: '#080808' }}>
+      <section className="py-10 md:py-14" style={{ backgroundColor: '#F8F8F8' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           {filtrados.length === 0 ? (
             <div className="text-center py-20">
-              <p className="font-display font-bold text-[#333] text-lg">Sin proyectos en esta categoría aún</p>
+              <p className="font-display font-bold text-[#ccc] text-lg">Sin proyectos en esta categoría aún</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -66,7 +66,7 @@ export default function Portafolio() {
                 <motion.div key={p.id} {...inView(i * 0.05)}>
                   <Link
                     to={p.slug ? `/portafolio/${p.slug}` : '#'}
-                    className="group bg-[#111] rounded-xl overflow-hidden border border-white/8 hover:border-[#FF2D78]/30 flex flex-col transition-all duration-200 cursor-pointer h-full"
+                    className="group bg-white rounded-xl overflow-hidden border border-black/8 hover:border-[#FF2D78]/30 shadow-sm flex flex-col transition-all duration-200 cursor-pointer h-full"
                   >
                     {/* Cover */}
                     {p.imagen ? (
@@ -98,17 +98,17 @@ export default function Portafolio() {
 
                     {/* Content */}
                     <div className="p-5 flex flex-col flex-1">
-                      <h3 className="font-display font-bold text-white mb-1">{p.titulo}</h3>
+                      <h3 className="font-display font-bold text-[#111] mb-1">{p.titulo}</h3>
                       <div className="flex items-center gap-1.5 mb-3">
-                        <MapPin size={11} className="text-[#444]" />
-                        <span className="text-xs text-[#444]">{p.ubicacion}</span>
+                        <MapPin size={11} className="text-[#999]" />
+                        <span className="text-xs text-[#999]">{p.ubicacion}</span>
                       </div>
                       <p className="text-sm text-[#555] leading-relaxed flex-1 mb-4">{p.descripcion}</p>
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {p.tags.map((tag) => (
-                          <span key={tag} className="text-[10px] px-2 py-0.5 bg-white/5 text-[#555] rounded-full">
+                          <span key={tag} className="text-[10px] px-2 py-0.5 bg-black/5 text-[#555] rounded-full">
                             {tag}
                           </span>
                         ))}
