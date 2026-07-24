@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Check, X, ArrowRight, Zap, Star, Heart, Building2 } from 'lucide-react'
+import { Check, X, ArrowRight, Zap, Star, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const WA = 'https://wa.me/529932228936'
@@ -85,7 +85,7 @@ export default function Servicios() {
             Todo claro,<br />sin sorpresas.
           </h1>
           <p className="text-[#555] text-base leading-relaxed mt-5 max-w-md">
-            Precios transparentes y paquetes diseñados para cualquier evento o negocio. No vendemos tecnología, vendemos resultados.
+            Precios transparentes y paquetes diseñados para tu evento especial. No vendemos tecnología, vendemos resultados.
           </p>
         </div>
       </section>
@@ -149,64 +149,6 @@ export default function Servicios() {
         </div>
       </section>
 
-      {/* LÍNEA B — Landing Pages */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#0D0D0D' }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-          <motion.div {...inView} className="mb-12">
-            <div className="inline-flex items-center gap-2 bg-[#FF2D78]/10 text-[#FF2D78] border border-[#FF2D78]/20 px-4 py-1.5 rounded-full text-sm font-semibold mb-5">
-              <Building2 size={14} />
-              Línea B — Landing Pages
-            </div>
-            <h2 className="font-display font-black text-white text-3xl md:text-4xl tracking-tight mb-3">
-              Presencia Digital para Negocios
-            </h2>
-            <p className="text-[#555] max-w-lg text-sm leading-relaxed">
-              Para restaurantes, clínicas, hoteles, abogados, barberías y cualquier negocio que quiera verse serio en internet.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl">
-            <PriceCard
-              plan="Paquete Presencia"
-              price="$1,090"
-              time="Entrega: 6 días hábiles desde recepción de datos"
-              includes={[
-                'Página principal + 3 páginas secundarias',
-                'Branding visual básico aplicado',
-                'Dominio personalizado incluido',
-                'Hosting gratuito en Netlify',
-                'WhatsApp y contacto rápido',
-                'Ubicación con mapa',
-                'Diseño 100% responsive',
-                'SSL incluido',
-              ]}
-              excludes={[
-                'Hosting de pago',
-                'Páginas adicionales',
-                'Copywriting',
-                'SEO',
-              ]}
-            />
-            <PriceCard
-              plan="Paquete Marca Digital"
-              price="$1,990"
-              time="Entrega: 6 días hábiles desde recepción de datos"
-              badge="Más completo"
-              highlight
-              includes={[
-                'Todo el Paquete Presencia',
-                'Hosting 1 año incluido',
-                'Hasta 6 páginas en total',
-                'Copywriting básico incluido',
-                'CTAs estratégicos por página',
-                'Optimización móvil avanzada',
-                'SEO básico (meta tags, descripciones, velocidad)',
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Demo personalizada */}
       <motion.section {...inView} className="py-16 md:py-20" style={{ backgroundColor: '#080808' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
@@ -218,7 +160,7 @@ export default function Servicios() {
               Mira cómo quedaría tu proyecto antes de contratar
             </h2>
             <p className="text-[#555] text-sm max-w-xl mb-8 leading-relaxed">
-              Antes de pagar un solo peso, te mostramos una <span className="text-white font-semibold">demo funcional con tu información real</span> — tu nombre, tu fecha, tu evento o tu negocio. Para que veas exactamente lo que recibirás.
+              Antes de pagar un solo peso, te mostramos una <span className="text-white font-semibold">demo funcional con tu información real</span> — tu nombre, tu fecha, tu evento. Para que veas exactamente lo que recibirás.
             </p>
             <div className="grid md:grid-cols-3 gap-4 mb-8">
               {[

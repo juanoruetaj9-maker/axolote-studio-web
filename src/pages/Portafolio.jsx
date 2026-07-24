@@ -28,7 +28,7 @@ export default function Portafolio() {
               Proyectos que hablan<br />por sí solos.
             </h1>
             <p className="text-[#555] text-base leading-relaxed mt-5 max-w-md">
-              Cada proyecto es único. Aquí mostramos parte de lo que hemos construido para personas y negocios de toda México.
+              Cada proyecto es único. Aquí mostramos parte de lo que hemos construido para personas de toda México.
             </p>
           </motion.div>
         </div>

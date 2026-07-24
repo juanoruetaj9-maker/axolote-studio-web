@@ -87,11 +87,8 @@ export default function Contacto() {
                     <option value="">Selecciona una opción...</option>
                     <option value="Invitación web - Boda">Invitación web — Boda</option>
                     <option value="Invitación web - XV Años">Invitación web — XV Años</option>
-                    <option value="Invitación web - Graduación">Invitación web — Graduación</option>
-                    <option value="Invitación web - Otro evento">Invitación web — Otro evento</option>
-                    <option value="Landing page para negocio">Landing page para negocio</option>
-                    <option value="Branding / Logotipo">Branding / Logotipo</option>
-                    <option value="Diseño en Canva / Material visual">Diseño en Canva / Material visual</option>
+                    <option value="Invitación web - Baby Shower">Invitación web — Baby Shower</option>
+                    <option value="Invitación web - Cumpleaños Especial">Invitación web — Cumpleaños Especial</option>
                     <option value="Otro">Otro</option>
                   </select>
                 </div>

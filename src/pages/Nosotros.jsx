@@ -45,11 +45,11 @@ export default function Nosotros() {
             <span className="text-[11px] font-semibold text-[#444] uppercase tracking-[0.22em]">Quiénes somos</span>
             <h1 className="font-display font-black text-white text-[clamp(2.8rem,8vw,6rem)] tracking-tight leading-none mt-3 max-w-2xl">
               Diseño profesional<br />
-              para negocios<br />
+              para momentos<br />
               <em className="not-italic text-[#FF2D78]">reales.</em>
             </h1>
             <p className="text-[#555] text-base leading-relaxed mt-5 max-w-md">
-              Un estudio creativo y digital que transforma negocios en presencias profesionales, claras y memorables.
+              Un estudio creativo y digital que transforma tus eventos más importantes en experiencias digitales profesionales, claras y memorables.
             </p>
           </motion.div>
         </div>
@@ -76,16 +76,16 @@ export default function Nosotros() {
               </h2>
               <div className="flex flex-col gap-4 text-sm text-[#666] leading-relaxed">
                 <p>
-                  Axolote Studio nació con una pregunta sencilla: ¿por qué hay tantos negocios increíbles que visualmente parecen pequeños o poco serios en internet?
+                  Axolote Studio nació con una pregunta sencilla: ¿por qué las bodas, los XV años y las celebraciones más importantes de la vida terminan con invitaciones digitales genéricas, sin identidad ni cuidado visual?
                 </p>
                 <p>
-                  Restaurantes excelentes sin página. Clínicas de calidad con imagen descuidada. Eventos premium con invitaciones del montón. El problema no era falta de calidad en el negocio, sino falta de acceso a diseño profesional real y accesible.
+                  Bodas soñadas con invitaciones de plantilla. XV años cuidados al detalle con una tarjeta digital genérica. Baby showers y cumpleaños especiales sin nada que reflejara su importancia. El problema no era falta de cariño por el evento, sino falta de acceso a diseño profesional real y accesible.
                 </p>
                 <p>
                   Decidimos resolver exactamente eso. No con tecnología complicada ni términos corporativos, sino con diseño honesto, acompañamiento cercano y precios que tienen sentido.
                 </p>
                 <p className="font-semibold text-white">
-                  Hoy ayudamos a personas y negocios de toda México a verse tan profesionales como realmente son.
+                  Hoy ayudamos a personas de toda México a vivir sus eventos más importantes con una experiencia digital tan especial como la ocasión.
                 </p>
               </div>
             </motion.div>
@@ -97,7 +97,7 @@ export default function Nosotros() {
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1600&q=80"
-          alt="Sureste Mexicano"
+          alt="Axolote Studio en México"
           loading="lazy"
           className="w-full h-full object-cover"
         />
@@ -124,7 +124,7 @@ export default function Nosotros() {
               </div>
               <h3 className="font-display font-bold text-xl text-white mb-3">Misión</h3>
               <p className="text-sm text-[#666] leading-relaxed">
-                Ayudar a personas y negocios a mejorar su presencia visual y digital mediante experiencias creativas, modernas y accesibles, ofreciendo acompañamiento cercano, diseño profesional y soluciones fáciles de entender.
+                Ayudar a las personas a celebrar sus eventos más importantes — bodas, XV años, baby shower y cumpleaños especiales — con experiencias digitales creativas, modernas y accesibles, ofreciendo acompañamiento cercano, diseño profesional y soluciones fáciles de entender.
               </p>
             </motion.div>
 
@@ -187,7 +187,7 @@ export default function Nosotros() {
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(8,8,8,0.6)' }} />
         <div className="absolute inset-0 flex items-center justify-center">
           <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.3em]">
-            Axolote Studio · Sureste Mexicano
+            Axolote Studio · México
           </p>
         </div>
       </div>

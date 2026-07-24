@@ -26,12 +26,12 @@ const pasos = [
   {
     num: '02',
     title: 'Entendemos tu proyecto',
-    desc: 'Hablamos de tu evento o negocio para entender exactamente lo que necesitas. Hacemos preguntas simples para no pedirte nada de más.',
+    desc: 'Hablamos de tu evento para entender exactamente lo que necesitas. Hacemos preguntas simples para no pedirte nada de más.',
     icon: Search,
     detalles: [
       'Preguntas claras, sin tecnicismos',
-      'Para invitaciones: tipo de evento, fecha, estilo visual',
-      'Para negocios: giro, servicios, imagen actual',
+      'Tipo de evento, fecha, estilo visual',
+      'Nombres, lugar y detalles que quieres destacar',
       'Sin presión, sin urgencias artificiales',
     ],
   },
@@ -76,7 +76,7 @@ const pasos = [
 const faqs = [
   {
     q: '¿Cuánto tiempo tardan los proyectos?',
-    a: 'Depende del paquete: las invitaciones web tardan entre 4 y 10 días hábiles según el paquete elegido. Las landing pages van de 7 a 20 días hábiles. Si necesitas urgencia, hay una tarifa adicional del 30%.',
+    a: 'Depende del paquete: las invitaciones web tardan entre 4 y 10 días hábiles según el paquete elegido. Si necesitas urgencia, hay una tarifa adicional del 30%.',
   },
   {
     q: '¿Puedo hacer cambios después de la entrega?',
@@ -88,7 +88,7 @@ const faqs = [
   },
   {
     q: '¿Qué necesito tener listo para empezar?',
-    a: 'Para invitaciones: nombres, fecha, dirección del evento, fotos si las hay y referencia de estilo visual. Para negocios: logo si tienes, colores, fotos del negocio, lista de servicios y número de WhatsApp.',
+    a: 'Nombres, fecha, dirección del evento, fotos si las hay y referencia de estilo visual. Con eso ya podemos empezar.',
   },
   {
     q: '¿Trabajan con clientes de todo el país?',
