@@ -16,7 +16,7 @@ export default function PlantillaCard({ plantilla }) {
           src={plantilla.portada}
           alt={`Plantilla ${plantilla.nombre} — invitación digital ${estilo?.nombre.toLowerCase()} para ${eventoPrincipal?.nombre.toLowerCase()}`}
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-200"
         />
       </div>
       <div className="p-4 flex items-center justify-between gap-3">
