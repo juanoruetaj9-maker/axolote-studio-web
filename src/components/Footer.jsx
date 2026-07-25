@@ -42,7 +42,7 @@ export default function Footer() {
               Axolote Studio
             </Link>
             <p className="text-[12px] text-[#444] mt-2 max-w-xs leading-relaxed">
-              Estudio creativo y digital · Sureste Mexicano<br />
+              Estudio creativo y digital · México<br />
               Diseño que no se olvida.
             </p>
           </div>
