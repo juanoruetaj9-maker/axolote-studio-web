@@ -26,10 +26,10 @@ const pasos = [
   {
     num: '02',
     title: 'Entendemos tu proyecto',
-    desc: 'Hablamos de tu evento para entender exactamente lo que necesitas. Hacemos preguntas simples para no pedirte nada de más.',
+    desc: 'Hablamos de tu evento para entender exactamente lo que necesitas. Eliges una plantilla de nuestra galería o nos mandas tu propia referencia — así sabemos exactamente qué imaginas.',
     icon: Search,
     detalles: [
-      'Preguntas claras, sin tecnicismos',
+      'Elige una plantilla de la galería o manda tu referencia',
       'Tipo de evento, fecha, estilo visual',
       'Nombres, lugar y detalles que quieres destacar',
       'Sin presión, sin urgencias artificiales',
@@ -176,6 +176,13 @@ export default function Proceso() {
                         </li>
                       ))}
                     </ul>
+                    {paso.num === '02' && (
+                      <Link to="/plantillas"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF2D78] hover:text-[#E0155F] transition-colors cursor-pointer mt-4"
+                      >
+                        Ver galería de plantillas <ArrowRight size={12} />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </motion.div>

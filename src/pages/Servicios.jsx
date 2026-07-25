@@ -59,6 +59,11 @@ function PriceCard({ nombre, precio, entrega, incluye, badge, destacado }) {
       >
         Cotizar este plan
       </a>
+      <Link to="/plantillas"
+        className="block w-full text-center py-2.5 mt-2 text-xs font-semibold text-[#999] hover:text-[#FF2D78] transition-colors cursor-pointer"
+      >
+        Ver plantillas disponibles
+      </Link>
     </div>
   )
 }
