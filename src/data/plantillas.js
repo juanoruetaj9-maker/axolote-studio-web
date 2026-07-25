@@ -1,0 +1,310 @@
+// Única fuente de verdad para el catálogo de plantillas.
+// No hardcodear plantillas, estilos ni eventos dentro de componentes JSX.
+// Los precios y features de paquetes viven en ./paquetes.js — no se duplican aquí.
+
+// ESTILOS
+// id           — usado como valor de `estilo` en cada plantilla y como slug de /plantillas/:estilo
+// nombre       — texto mostrado en filtros, tabs y encabezados
+// descripcion  — una línea corta, se usa en cards y como subtítulo
+// textoSeo     — párrafo de 130-150 palabras, visible en /plantillas/:estilo y usado como meta description
+export const ESTILOS = [
+  {
+    id: 'elegante',
+    nombre: 'Elegante',
+    descripcion: 'Serif clásica, tonos neutros, formal',
+    textoSeo: 'Las invitaciones digitales de estilo elegante son la opción favorita para bodas y XV años formales que buscan una estética atemporal. Combinamos tipografía serif de alto contraste con paletas en dorado, marfil y tonos neutros para transmitir sobriedad sin perder calidez. Cada plantilla elegante se personaliza con los nombres, la fecha y el lugar de tu evento, manteniendo el mismo cuidado tipográfico y espaciado que verías en una invitación impresa de papel fino, pero en formato digital: con código QR, confirmación de asistencia y cuenta regresiva incluidos según tu paquete. Es la elección natural cuando el evento se celebra en un salón, hacienda o jardín con una estética clásica, y quieres que la invitación comunique formalidad desde el primer vistazo, sin recurrir a colores estridentes ni ilustraciones llamativas que compitan con la ocasión.',
+  },
+  {
+    id: 'moderno',
+    nombre: 'Moderno',
+    descripcion: 'Sans-serif, geométrico, alto contraste',
+    textoSeo: 'El estilo moderno usa tipografía sans-serif, formas geométricas y contrastes marcados en blanco y negro (o en la paleta de tu evento) para lograr invitaciones digitales limpias y directas. Es ideal para bodas en espacios arquitectónicos, cumpleaños de alto impacto o cualquier festejo donde el anfitrión prefiera una estética minimalista pero con carácter, sin ornamentos ni cursivas. Personalizamos cada plantilla moderna con tu paleta de colores, tipografía elegida y estructura de contenido según el paquete: invitación de página única, save the date, código QR y, en los paquetes superiores, sitio web completo con cronograma y galería. El resultado es una pieza digital que se siente actual y fácil de leer en cualquier dispositivo, sin sacrificar la elegancia que un evento especial merece, perfecta para quienes quieren destacar por sencillez antes que por decoración.',
+  },
+  {
+    id: 'floral',
+    nombre: 'Floral',
+    descripcion: 'Ilustración botánica, tonos suaves',
+    textoSeo: 'Las plantillas florales combinan ilustración botánica —hojas, ramas de eucalipto y flores en acuarela o fotografía— con tonos suaves como verde salvia, crema y blanco roto. Es el estilo más solicitado para bodas y XV años al aire libre, en jardín o hacienda, donde la naturaleza ya es parte de la decoración y la invitación digital busca reflejar esa misma atmósfera. Personalizamos cada diseño floral con tus nombres, fecha y colores del evento, manteniendo el equilibrio entre ilustración y espacio en blanco para que la información importante —lugar, hora, RSVP— nunca quede opacada por el diseño. Disponible con save the date, código QR, cuenta regresiva y álbum digital según el paquete elegido, ideal para parejas y familias que buscan calidez visual sin perder claridad ni formalidad en la comunicación con sus invitados.',
+  },
+  {
+    id: 'minimalista',
+    nombre: 'Minimalista',
+    descripcion: 'Espacio en blanco, tipografía protagonista',
+    textoSeo: 'El estilo minimalista apuesta por el espacio en blanco y la tipografía como protagonista, sin ilustraciones ni fondos recargados. Es la opción ideal para bodas, baby showers y cumpleaños donde el anfitrión prefiere que la información —nombres, fecha, lugar— se lea de forma inmediata y sin distracciones visuales. Cada plantilla minimalista se adapta a tu paleta de colores y tipografía, conservando la misma filosofía de simplicidad en todos los elementos: invitación, save the date, código QR y RSVP. Funciona especialmente bien en dispositivos móviles, donde el exceso de elementos visuales suele dificultar la lectura, y resulta una elección natural para quienes buscan una estética contemporánea y depurada. Personalizamos cada detalle con tus datos reales para que la invitación se sienta hecha a la medida de tu evento, no como una plantilla genérica compartida por miles de personas.',
+  },
+  {
+    id: 'romantico',
+    nombre: 'Romántico',
+    descripcion: 'Acuarela, cursivas, rosas y durazno',
+    textoSeo: 'Las plantillas de estilo romántico combinan acuarela, tipografía cursiva y paletas en rosa y durazno para transmitir ternura y delicadeza. Es una de las opciones más elegidas para XV años y baby showers, donde se busca una estética suave que acompañe la emoción del festejo sin caer en lo infantil. Cada diseño romántico se personaliza con los nombres del festejado o de los papás, la fecha y el lugar del evento, manteniendo la misma paleta de acuarela y las mismas cursivas delicadas en cada pieza —invitación, save the date, código QR y cuenta regresiva—. El resultado es una invitación digital que se siente hecha a mano, cálida y personal, ideal para quienes quieren que sus invitados perciban el cuidado puesto en cada detalle del evento desde el primer mensaje que reciben por WhatsApp o redes sociales.',
+  },
+  {
+    id: 'nocturno',
+    nombre: 'Nocturno',
+    descripcion: 'Fondos oscuros, dorado, alto impacto',
+    textoSeo: 'El estilo nocturno usa fondos oscuros combinados con dorado para crear invitaciones digitales de alto impacto visual, ideales para fiestas de gala, XV años de noche o cumpleaños especiales que buscan una estética sofisticada y dramática. El contraste entre el negro profundo y los acentos dorados comunica exclusividad desde el primer segundo, algo que funciona especialmente bien cuando el evento se celebra en un salón con iluminación cálida o una decoración elegante nocturna. Personalizamos cada plantilla nocturna con tus nombres, fecha y detalles del evento, conservando la misma paleta oscura y dorada en la invitación, el save the date, el código QR y la cuenta regresiva. Es la elección natural para anfitriones que quieren que sus invitados sientan que se trata de un evento memorable antes incluso de llegar al lugar de la celebración.',
+  },
+  {
+    id: 'tropical',
+    nombre: 'Tropical',
+    descripcion: 'Palmas, verdes vivos, destino playa',
+    textoSeo: 'Las invitaciones de estilo tropical combinan palmeras, verdes vivos y paletas inspiradas en destinos de playa, perfectas para bodas y baby showers con temática de destino o eventos al aire libre en climas cálidos. Es el estilo que mejor comunica relajación y color desde el primer vistazo, ideal para quienes celebran cerca del mar o simplemente quieren transmitir esa energía en su evento. Cada plantilla tropical se personaliza con tus nombres, fecha y colores preferidos, manteniendo la misma paleta vibrante en la invitación, el save the date, el código QR y, en paquetes superiores, la galería previa al evento. También funciona muy bien para cumpleaños con temática de selva o cumpleaños infantiles con enfoque en la naturaleza, gracias a la fuerza visual del verde y la textura de las hojas de palma en cada pieza digital.',
+  },
+  {
+    id: 'vintage',
+    nombre: 'Vintage',
+    descripcion: 'Texturas de papel, sepia, retro',
+    textoSeo: 'El estilo vintage recrea texturas de papel envejecido y tonos sepia para lograr invitaciones digitales con aire retro, ideales para bodas y XV años que buscan una estética clásica con un toque nostálgico. La textura de papel, los bordes desgastados y la paleta cálida en tonos tierra evocan la sensación de una invitación impresa de otra época, aunque se entrega completamente en formato digital con código QR, RSVP y cuenta regresiva. Personalizamos cada plantilla vintage con tus nombres, fecha y lugar del evento, conservando la misma textura y paleta en todas las piezas —invitación, save the date y álbum digital—. Es una opción especialmente querida por parejas y familias que quieren rendir homenaje a una estética de otra generación sin renunciar a la practicidad de una invitación digital fácil de compartir por WhatsApp con todos los invitados.',
+  },
+]
+
+// EVENTOS
+// id     — usado en `eventos` de cada plantilla y en los filtros
+// nombre — texto mostrado en tabs y encabezados
+// icono  — nombre de componente de lucide-react (ver mapa ICONOS en PlantillaDetalle.jsx);
+//          si agregas un evento con un ícono nuevo, hay que importarlo y sumarlo a ese mapa
+export const EVENTOS = [
+  { id: 'boda', nombre: 'Boda', icono: 'Heart' },
+  { id: 'xv', nombre: 'XV Años', icono: 'Crown' },
+  { id: 'babyshower', nombre: 'Baby Shower', icono: 'Baby' },
+  { id: 'cumpleanos', nombre: 'Cumpleaños Especial', icono: 'PartyPopper' },
+]
+
+// PLANTILLAS — ver src/data/README-plantillas.md para la guía paso a paso.
+// id               — formato ax-### incremental e inmutable (va en el mensaje de WhatsApp)
+// nombre           — nombre comercial de la plantilla
+// estilo           — debe coincidir con un id de ESTILOS
+// eventos          — arreglo de ids de EVENTOS en los que aplica (puede ser más de uno)
+// paletaPrincipal / paletaSecundaria — hex de referencia, se muestran como swatches
+// tipografiaTitulo / tipografiaCuerpo — nombres de fuente de referencia (informativos)
+// portada          — imagen principal (card + primera vista del detalle)
+// galeria          — 2-3 imágenes, la primera debe coincidir con portada
+// disponibleEn     — ids de paquetes.js en los que se ofrece (normalmente los 3)
+// destacada        — true = aparece en "Explora nuestros estilos" del Home (máx. 4)
+// descripcion      — una línea corta, se usa en card, detalle y JSON-LD
+export const PLANTILLAS = [
+  {
+    id: 'ax-001',
+    nombre: 'Aurora',
+    estilo: 'elegante',
+    eventos: ['boda'],
+    paletaPrincipal: '#C9A227',
+    paletaSecundaria: '#FAF7F2',
+    tipografiaTitulo: 'Playfair Display',
+    tipografiaCuerpo: 'Inter',
+    portada: 'https://images.unsplash.com/photo-1633037773384-27d7ac0491e7?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1633037773384-27d7ac0491e7?w=800&q=75',
+      'https://images.unsplash.com/photo-1697217866029-2aef7068ecee?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: true,
+    descripcion: 'Dorado sobre marfil, tipografía serif de alto contraste.',
+  },
+  {
+    id: 'ax-002',
+    nombre: 'Bosque',
+    estilo: 'floral',
+    eventos: ['boda', 'xv'],
+    paletaPrincipal: '#5B7553',
+    paletaSecundaria: '#F5F1E6',
+    tipografiaTitulo: 'Cormorant Garamond',
+    tipografiaCuerpo: 'Inter',
+    portada: 'https://images.unsplash.com/photo-1770150138358-5b8db4066e03?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1770150138358-5b8db4066e03?w=800&q=75',
+      'https://images.unsplash.com/photo-1767824122836-f6d140814d48?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Ilustración botánica en verde salvia sobre crema cálido.',
+  },
+  {
+    id: 'ax-003',
+    nombre: 'Lino',
+    estilo: 'minimalista',
+    eventos: ['boda', 'cumpleanos'],
+    paletaPrincipal: '#222222',
+    paletaSecundaria: '#F8F8F8',
+    tipografiaTitulo: 'Syne',
+    tipografiaCuerpo: 'Manrope',
+    portada: 'https://images.unsplash.com/photo-1742887804353-ca69510de941?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1742887804353-ca69510de941?w=800&q=75',
+      'https://images.unsplash.com/photo-1621295693036-f8d18d6ab314?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Blanco roto y tipografía protagonista, sin adornos.',
+  },
+  {
+    id: 'ax-004',
+    nombre: 'Medianoche',
+    estilo: 'nocturno',
+    eventos: ['xv', 'cumpleanos'],
+    paletaPrincipal: '#D4AF37',
+    paletaSecundaria: '#0D0D0D',
+    tipografiaTitulo: 'Playfair Display',
+    tipografiaCuerpo: 'Manrope',
+    portada: 'https://images.unsplash.com/photo-1748551204300-f227d5af350f?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1748551204300-f227d5af350f?w=800&q=75',
+      'https://images.unsplash.com/photo-1779974797051-0c8b15b85c4e?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: true,
+    descripcion: 'Fondo negro con dorado de alto impacto, para fiestas de gala.',
+  },
+  {
+    id: 'ax-005',
+    nombre: 'Coral',
+    estilo: 'tropical',
+    eventos: ['boda', 'babyshower'],
+    paletaPrincipal: '#2A9D8F',
+    paletaSecundaria: '#FFF6EE',
+    tipografiaTitulo: 'Cormorant Garamond',
+    tipografiaCuerpo: 'Inter',
+    portada: 'https://images.unsplash.com/photo-1766104798949-39c4c5ac2b69?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1766104798949-39c4c5ac2b69?w=800&q=75',
+      'https://images.unsplash.com/photo-1636665002628-01dfd6acc8fc?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Turquesa y coral con aire de destino de playa.',
+  },
+  {
+    id: 'ax-006',
+    nombre: 'Papel',
+    estilo: 'vintage',
+    eventos: ['boda', 'xv'],
+    paletaPrincipal: '#8B6F47',
+    paletaSecundaria: '#F1E7D0',
+    tipografiaTitulo: 'Cormorant Garamond',
+    tipografiaCuerpo: 'Inter',
+    portada: 'https://images.unsplash.com/photo-1529066496421-d8fb2dca38a6?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1529066496421-d8fb2dca38a6?w=800&q=75',
+      'https://images.unsplash.com/photo-1712314131223-37afaecc4a86?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Textura de papel envejecido en sepia, aire retro.',
+  },
+  {
+    id: 'ax-007',
+    nombre: 'Duraznillo',
+    estilo: 'romantico',
+    eventos: ['xv', 'babyshower'],
+    paletaPrincipal: '#E8A798',
+    paletaSecundaria: '#FFF8F5',
+    tipografiaTitulo: 'Playfair Display',
+    tipografiaCuerpo: 'Manrope',
+    portada: 'https://images.unsplash.com/photo-1744056083470-3b7a223c5801?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1744056083470-3b7a223c5801?w=800&q=75',
+      'https://images.unsplash.com/photo-1645984704035-71f26667400e?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: true,
+    descripcion: 'Acuarela en rosas y durazno, cursivas delicadas.',
+  },
+  {
+    id: 'ax-008',
+    nombre: 'Contraste',
+    estilo: 'moderno',
+    eventos: ['boda', 'cumpleanos'],
+    paletaPrincipal: '#111111',
+    paletaSecundaria: '#FFFFFF',
+    tipografiaTitulo: 'Syne',
+    tipografiaCuerpo: 'Manrope',
+    portada: 'https://images.unsplash.com/photo-1755809418126-1081d4f3b654?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1755809418126-1081d4f3b654?w=800&q=75',
+      'https://images.unsplash.com/photo-1719499719196-7a256956a22b?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Negro y blanco geométrico, alto contraste sin ruido.',
+  },
+  {
+    id: 'ax-009',
+    nombre: 'Corona',
+    estilo: 'elegante',
+    eventos: ['xv'],
+    paletaPrincipal: '#B08D57',
+    paletaSecundaria: '#FAF7F2',
+    tipografiaTitulo: 'Playfair Display',
+    tipografiaCuerpo: 'Inter',
+    portada: 'https://images.unsplash.com/photo-1732649124686-3bab54f79aa3?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1732649124686-3bab54f79aa3?w=800&q=75',
+      'https://images.unsplash.com/photo-1710587384897-b1390bd46cc6?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Marfil y dorado clásico, pensado para XV años formales.',
+  },
+  {
+    id: 'ax-010',
+    nombre: 'Nube',
+    estilo: 'minimalista',
+    eventos: ['babyshower'],
+    paletaPrincipal: '#A9C6D8',
+    paletaSecundaria: '#FFFFFF',
+    tipografiaTitulo: 'Syne',
+    tipografiaCuerpo: 'Manrope',
+    portada: 'https://images.unsplash.com/photo-1554719686-864b2da2bd78?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1554719686-864b2da2bd78?w=800&q=75',
+      'https://images.unsplash.com/photo-1694394714689-b6314be9481c?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Celeste y blanco, aire ligero y tierno.',
+  },
+  {
+    id: 'ax-011',
+    nombre: 'Selva',
+    estilo: 'tropical',
+    eventos: ['babyshower', 'cumpleanos'],
+    paletaPrincipal: '#3F7856',
+    paletaSecundaria: '#FBF9F2',
+    tipografiaTitulo: 'Cormorant Garamond',
+    tipografiaCuerpo: 'Inter',
+    portada: 'https://images.unsplash.com/photo-1506634064465-7dab4de896ed?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1506634064465-7dab4de896ed?w=800&q=75',
+      'https://images.unsplash.com/photo-1533141538433-a57d70daaa09?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: true,
+    descripcion: 'Verdes de palma vivos, ideal para temáticas de selva o jungla.',
+  },
+  {
+    id: 'ax-012',
+    nombre: 'Fiesta',
+    estilo: 'moderno',
+    eventos: ['cumpleanos'],
+    paletaPrincipal: '#FF2D78',
+    paletaSecundaria: '#F8F8F8',
+    tipografiaTitulo: 'Syne',
+    tipografiaCuerpo: 'Manrope',
+    portada: 'https://images.unsplash.com/photo-1783804374375-794afb6167b6?w=800&q=75',
+    galeria: [
+      'https://images.unsplash.com/photo-1783804374375-794afb6167b6?w=800&q=75',
+      'https://images.unsplash.com/photo-1678846851728-f7a8f94702e7?w=800&q=75',
+    ],
+    disponibleEn: ['esencial', 'premium', 'experiencia'],
+    destacada: false,
+    descripcion: 'Geometría vibrante en magenta, para cumpleaños de alto impacto.',
+  },
+]
+
+// Genera el link de WhatsApp con contexto completo.
+// El id de la plantilla en el mensaje es crítico: es cómo el fundador
+// sabe exactamente qué vio el cliente.
+export function buildPlantillaWhatsappLink({ plantillaId, plantillaNombre, eventoNombre, paqueteNombre }) {
+  const texto = `Hola, vi la plantilla ${plantillaNombre} (ref: ${plantillaId}) para mi ${eventoNombre}. Me interesa el paquete ${paqueteNombre}. ¿Me pueden dar más información?`
+  return `https://wa.me/529932228936?text=${encodeURIComponent(texto)}`
+}

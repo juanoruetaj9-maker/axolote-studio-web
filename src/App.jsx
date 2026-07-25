@@ -5,6 +5,9 @@ import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
 import Home from './pages/Home'
 import Servicios from './pages/Servicios'
+import Plantillas from './pages/Plantillas'
+import PlantillasEstilo from './pages/PlantillasEstilo'
+import PlantillaDetalle from './pages/PlantillaDetalle'
 import Portafolio from './pages/Portafolio'
 import Proceso from './pages/Proceso'
 import Nosotros from './pages/Nosotros'
@@ -29,6 +32,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<Servicios />} />
+          <Route path="/plantillas" element={<Plantillas />} />
+          <Route path="/plantillas/detalle/:id" element={<PlantillaDetalle />} />
+          <Route path="/plantillas/:estilo" element={<PlantillasEstilo />} />
           <Route path="/portafolio" element={<Portafolio />} />
           <Route path="/proceso" element={<Proceso />} />
           <Route path="/nosotros" element={<Nosotros />} />

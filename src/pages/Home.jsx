@@ -3,6 +3,10 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { proyectos } from '../data/proyectos'
 import { paquetes } from '../data/paquetes'
+import { PLANTILLAS } from '../data/plantillas'
+import PlantillaCard from '../components/PlantillaCard'
+
+const plantillasDestacadas = PLANTILLAS.filter((p) => p.destacada).slice(0, 4)
 
 const precioDesde = Math.min(...paquetes.map((p) => p.precio))
 
@@ -82,6 +86,35 @@ export default function Home() {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ─── EXPLORA NUESTROS ESTILOS ─── */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="flex items-end justify-between mb-10 md:mb-14">
+            <div>
+              <span className="text-[11px] font-semibold text-[#999] uppercase tracking-[0.22em]">Galería de plantillas</span>
+              <h2 className="font-display font-black text-[#111] text-4xl md:text-5xl tracking-tight mt-2">Explora nuestros estilos</h2>
+            </div>
+            <Link to="/plantillas"
+              className="hidden md:flex items-center gap-1.5 text-[11px] font-semibold text-[#999] uppercase tracking-widest hover:text-[#FF2D78] transition-colors duration-200 cursor-pointer"
+            >
+              Ver todas las plantillas <ArrowRight size={12} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {plantillasDestacadas.map((p) => (
+              <PlantillaCard key={p.id} plantilla={p} />
+            ))}
+          </div>
+
+          <Link to="/plantillas"
+            className="md:hidden mt-8 flex items-center justify-center gap-1.5 text-sm font-semibold text-[#FF2D78] cursor-pointer"
+          >
+            Ver todas las plantillas <ArrowRight size={13} />
+          </Link>
         </div>
       </section>
 
