@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom'
 import { ChevronDown, ArrowRight, MessageCircle } from 'lucide-react'
 import { ESTILOS, EVENTOS, PLANTILLAS } from '../data/plantillas'
 import PlantillaCard from '../components/PlantillaCard'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PINTEREST_WA_LINK = `https://wa.me/529932228936?text=${encodeURIComponent(
   'Hola, tengo una referencia (Pinterest u otra imagen) para mi invitación. ¿Me ayudan a personalizarla?'
 )}`
 
 export default function Plantillas() {
+  useDocumentMeta({
+    title: 'Plantillas de Invitaciones Digitales | Axolote Studio',
+    description: 'Explora la galería de plantillas de invitaciones digitales de Axolote Studio para bodas, XV años, baby shower y cumpleaños. Elige tu estilo y lo personalizamos para ti.',
+  })
+
   const [eventoFiltro, setEventoFiltro] = useState('todos')
   const [estiloFiltro, setEstiloFiltro] = useState('todos')
 

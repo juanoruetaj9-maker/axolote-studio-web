@@ -2,11 +2,17 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { ESTILOS, PLANTILLAS } from '../data/plantillas'
 import PlantillaCard from '../components/PlantillaCard'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PlantillasEstilo() {
   const { estilo: estiloId } = useParams()
   const estilo = ESTILOS.find((e) => e.id === estiloId)
   const plantillas = PLANTILLAS.filter((p) => p.estilo === estiloId)
+
+  useDocumentMeta({
+    title: estilo ? `Invitaciones ${estilo.nombre} | Axolote Studio` : 'Plantillas | Axolote Studio',
+    description: estilo ? estilo.textoSeo.slice(0, 155).trim() + '…' : undefined,
+  })
 
   if (!estilo) {
     return (
@@ -47,6 +53,10 @@ export default function PlantillasEstilo() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           <p className="text-sm text-[#999] mb-6">
             {plantillas.length} {plantillas.length === 1 ? 'plantilla disponible' : 'plantillas disponibles'} en este estilo
+          </p>
+
+          <p className="text-sm text-[#666] leading-relaxed max-w-3xl mb-10">
+            {estilo.textoSeo}
           </p>
 
           {plantillas.length === 0 ? (

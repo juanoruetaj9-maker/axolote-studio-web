@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Check, Heart, Crown, Baby, PartyPopper, MessageC
 import { ESTILOS, EVENTOS, PLANTILLAS, buildPlantillaWhatsappLink } from '../data/plantillas'
 import { paquetes } from '../data/paquetes'
 import PlantillaCard from '../components/PlantillaCard'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const ICONOS = { Heart, Crown, Baby, PartyPopper }
 
@@ -48,6 +49,12 @@ export default function PlantillaDetalle() {
   const [vistaActiva, setVistaActiva] = useState(0)
   const plantilla = PLANTILLAS.find((p) => p.id === id)
 
+  const estiloParaTitulo = ESTILOS.find((e) => e.id === plantilla?.estilo)
+  useDocumentMeta({
+    title: plantilla ? `${plantilla.nombre} — Invitación ${estiloParaTitulo?.nombre} | Axolote Studio` : 'Plantilla no encontrada | Axolote Studio',
+    description: plantilla?.descripcion,
+  })
+
   if (!plantilla) return <NotFound />
 
   const estilo = ESTILOS.find((e) => e.id === plantilla.estilo)
@@ -65,8 +72,25 @@ export default function PlantillaDetalle() {
     paqueteNombre: paquetes.find((p) => p.destacado)?.nombre || paquetes[0].nombre,
   })
 
+  const precioEntrada = paquetes.find((p) => p.id === 'esencial')?.precio ?? paquetes[0].precio
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: plantilla.nombre,
+    image: plantilla.portada,
+    description: plantilla.descripcion,
+    offers: {
+      '@type': 'Offer',
+      price: precioEntrada,
+      priceCurrency: 'MXN',
+      availability: 'https://schema.org/InStock',
+      url: `https://axolote-studio-web.vercel.app/plantillas/detalle/${plantilla.id}`,
+    },
+  }
+
   return (
     <div style={{ backgroundColor: '#F8F8F8' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-10 md:py-16">
 
         <Link to="/plantillas" className="inline-flex items-center gap-2 text-sm font-semibold text-[#555] hover:text-[#FF2D78] transition-colors cursor-pointer mb-8">
