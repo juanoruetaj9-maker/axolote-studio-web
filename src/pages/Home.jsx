@@ -40,7 +40,7 @@ export default function Home() {
     <div style={{ backgroundColor: '#F8F8F8' }}>
 
       {/* ─── HERO ─── */}
-      <section className="min-h-[calc(100vh-5rem)] flex flex-col justify-between" style={{ backgroundColor: '#080808' }}>
+      <section className="min-h-[calc(100vh-5rem)] flex flex-col justify-between" style={{ backgroundColor: '#F8F8F8' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 flex-1 flex flex-col justify-center py-10">
 
           {/* Eyebrow */}
@@ -56,7 +56,7 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease }}
-              className="font-display font-black text-white tracking-tighter leading-[0.93] text-[clamp(3.8rem,12vw,9.5rem)]"
+              className="font-display font-black text-[#111] tracking-tighter leading-[0.93] text-[clamp(3.8rem,12vw,9.5rem)]"
             >
               Diseño que<br />
               no se{' '}
@@ -76,7 +76,7 @@ export default function Home() {
                 Ver trabajo <ArrowRight size={14} />
               </Link>
               <Link to="/contacto"
-                className="text-sm font-medium text-[#555] hover:text-white transition-colors duration-200 cursor-pointer"
+                className="text-sm font-medium text-[#555] hover:text-[#111] transition-colors duration-200 cursor-pointer"
               >
                 Cotizar →
               </Link>
