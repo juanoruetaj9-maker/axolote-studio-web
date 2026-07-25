@@ -2,6 +2,11 @@
 // No hardcodear plantillas, estilos ni eventos dentro de componentes JSX.
 // Los precios y features de paquetes viven en ./paquetes.js — no se duplican aquí.
 
+// ESTILOS
+// id           — usado como valor de `estilo` en cada plantilla y como slug de /plantillas/:estilo
+// nombre       — texto mostrado en filtros, tabs y encabezados
+// descripcion  — una línea corta, se usa en cards y como subtítulo
+// textoSeo     — párrafo de 130-150 palabras, visible en /plantillas/:estilo y usado como meta description
 export const ESTILOS = [
   {
     id: 'elegante',
@@ -53,6 +58,11 @@ export const ESTILOS = [
   },
 ]
 
+// EVENTOS
+// id     — usado en `eventos` de cada plantilla y en los filtros
+// nombre — texto mostrado en tabs y encabezados
+// icono  — nombre de componente de lucide-react (ver mapa ICONOS en PlantillaDetalle.jsx);
+//          si agregas un evento con un ícono nuevo, hay que importarlo y sumarlo a ese mapa
 export const EVENTOS = [
   { id: 'boda', nombre: 'Boda', icono: 'Heart' },
   { id: 'xv', nombre: 'XV Años', icono: 'Crown' },
@@ -60,6 +70,18 @@ export const EVENTOS = [
   { id: 'cumpleanos', nombre: 'Cumpleaños Especial', icono: 'PartyPopper' },
 ]
 
+// PLANTILLAS — ver src/data/README-plantillas.md para la guía paso a paso.
+// id               — formato ax-### incremental e inmutable (va en el mensaje de WhatsApp)
+// nombre           — nombre comercial de la plantilla
+// estilo           — debe coincidir con un id de ESTILOS
+// eventos          — arreglo de ids de EVENTOS en los que aplica (puede ser más de uno)
+// paletaPrincipal / paletaSecundaria — hex de referencia, se muestran como swatches
+// tipografiaTitulo / tipografiaCuerpo — nombres de fuente de referencia (informativos)
+// portada          — imagen principal (card + primera vista del detalle)
+// galeria          — 2-3 imágenes, la primera debe coincidir con portada
+// disponibleEn     — ids de paquetes.js en los que se ofrece (normalmente los 3)
+// destacada        — true = aparece en "Explora nuestros estilos" del Home (máx. 4)
+// descripcion      — una línea corta, se usa en card, detalle y JSON-LD
 export const PLANTILLAS = [
   {
     id: 'ax-001',
