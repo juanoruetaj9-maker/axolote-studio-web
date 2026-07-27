@@ -26,12 +26,12 @@ const pasos = [
   {
     num: '02',
     title: 'Entendemos tu proyecto',
-    desc: 'Hablamos de tu evento o negocio para entender exactamente lo que necesitas. Hacemos preguntas simples para no pedirte nada de más.',
+    desc: 'Hablamos de tu evento para entender exactamente lo que necesitas. Eliges una plantilla de nuestra galería o nos mandas tu propia referencia — así sabemos exactamente qué imaginas.',
     icon: Search,
     detalles: [
-      'Preguntas claras, sin tecnicismos',
-      'Para invitaciones: tipo de evento, fecha, estilo visual',
-      'Para negocios: giro, servicios, imagen actual',
+      'Elige una plantilla de la galería o manda tu referencia',
+      'Tipo de evento, fecha, estilo visual',
+      'Nombres, lugar y detalles que quieres destacar',
       'Sin presión, sin urgencias artificiales',
     ],
   },
@@ -76,7 +76,7 @@ const pasos = [
 const faqs = [
   {
     q: '¿Cuánto tiempo tardan los proyectos?',
-    a: 'Depende del paquete: las invitaciones web tardan entre 4 y 10 días hábiles según el paquete elegido. Las landing pages van de 7 a 20 días hábiles. Si necesitas urgencia, hay una tarifa adicional del 30%.',
+    a: 'Depende del paquete: las invitaciones web tardan entre 4 y 10 días hábiles según el paquete elegido. Si necesitas urgencia, hay una tarifa adicional del 30%.',
   },
   {
     q: '¿Puedo hacer cambios después de la entrega?',
@@ -88,7 +88,7 @@ const faqs = [
   },
   {
     q: '¿Qué necesito tener listo para empezar?',
-    a: 'Para invitaciones: nombres, fecha, dirección del evento, fotos si las hay y referencia de estilo visual. Para negocios: logo si tienes, colores, fotos del negocio, lista de servicios y número de WhatsApp.',
+    a: 'Nombres, fecha, dirección del evento, fotos si las hay y referencia de estilo visual. Con eso ya podemos empezar.',
   },
   {
     q: '¿Trabajan con clientes de todo el país?',
@@ -103,10 +103,10 @@ const faqs = [
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="border-b border-white/8 last:border-0">
+    <div className="border-b border-black/8 last:border-0">
       <button
         onClick={() => setOpen(!open)}
-        className={`flex items-center justify-between w-full py-5 text-left gap-4 transition-colors cursor-pointer ${open ? 'text-[#FF2D78]' : 'text-white hover:text-[#FF2D78]'}`}
+        className={`flex items-center justify-between w-full py-5 text-left gap-4 transition-colors cursor-pointer ${open ? 'text-[#FF2D78]' : 'text-[#111] hover:text-[#FF2D78]'}`}
       >
         <span className="font-semibold text-sm pr-4">{q}</span>
         <ChevronDown
@@ -125,7 +125,7 @@ function FaqItem({ q, a }) {
 
 export default function Proceso() {
   return (
-    <div style={{ backgroundColor: '#080808' }}>
+    <div style={{ backgroundColor: '#F8F8F8' }}>
 
       {/* Header */}
       <section style={{ backgroundColor: '#080808' }} className="pt-14 pb-16 md:pt-20 md:pb-24">
@@ -143,12 +143,12 @@ export default function Proceso() {
       </section>
 
       {/* Pasos */}
-      <section className="py-14 md:py-20" style={{ backgroundColor: '#080808' }}>
+      <section className="py-14 md:py-20" style={{ backgroundColor: '#F8F8F8' }}>
         <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-10">
           <div className="flex flex-col gap-4">
             {pasos.map((paso, i) => (
               <motion.div key={paso.num} {...inView(i * 0.06)}>
-                <div className="flex flex-col md:flex-row gap-6 p-7 rounded-xl bg-[#111] border border-white/8 hover:border-[#FF2D78]/20 transition-all duration-200">
+                <div className="flex flex-col md:flex-row gap-6 p-7 rounded-xl bg-white border border-black/8 hover:border-[#FF2D78]/20 shadow-sm transition-all duration-200">
                   {/* Left: number + icon */}
                   <div className="flex md:flex-col items-center md:items-center gap-4 md:gap-3 shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-[#FF2D78]/15 flex items-center justify-center shrink-0">
@@ -165,7 +165,7 @@ export default function Proceso() {
                       <span className="text-[10px] font-bold text-[#FF2D78] bg-[#FF2D78]/10 px-2 py-0.5 rounded-full uppercase tracking-wider">
                         Paso {i + 1}
                       </span>
-                      <h3 className="font-display font-bold text-lg text-white">{paso.title}</h3>
+                      <h3 className="font-display font-bold text-lg text-[#111]">{paso.title}</h3>
                     </div>
                     <p className="text-sm text-[#666] leading-relaxed mb-4">{paso.desc}</p>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
@@ -176,6 +176,13 @@ export default function Proceso() {
                         </li>
                       ))}
                     </ul>
+                    {paso.num === '02' && (
+                      <Link to="/plantillas"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF2D78] hover:text-[#E0155F] transition-colors cursor-pointer mt-4"
+                      >
+                        Ver galería de plantillas <ArrowRight size={12} />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -185,16 +192,16 @@ export default function Proceso() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#0D0D0D' }}>
+      <section className="py-16 md:py-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-10">
           <motion.div {...inView()} className="text-center mb-10">
-            <span className="text-[11px] font-semibold text-[#444] uppercase tracking-[0.22em]">Preguntas frecuentes</span>
-            <h2 className="font-display font-black text-white text-2xl md:text-3xl tracking-tight mt-3">
+            <span className="text-[11px] font-semibold text-[#999] uppercase tracking-[0.22em]">Preguntas frecuentes</span>
+            <h2 className="font-display font-black text-[#111] text-2xl md:text-3xl tracking-tight mt-3">
               Dudas comunes, respuestas directas
             </h2>
           </motion.div>
 
-          <div className="bg-[#111] rounded-2xl border border-white/8 px-6 py-2">
+          <div className="bg-[#F8F8F8] rounded-2xl border border-black/8 px-6 py-2">
             {faqs.map((faq) => (
               <FaqItem key={faq.q} {...faq} />
             ))}

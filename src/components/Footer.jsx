@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ESTILOS } from '../data/plantillas'
 
 function IgIcon() {
   return (
@@ -42,7 +43,7 @@ export default function Footer() {
               Axolote Studio
             </Link>
             <p className="text-[12px] text-[#444] mt-2 max-w-xs leading-relaxed">
-              Estudio creativo y digital · Sureste Mexicano<br />
+              Estudio creativo y digital · México<br />
               Diseño que no se olvida.
             </p>
           </div>
@@ -80,8 +81,22 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Plantillas por estilo (SEO) */}
+        <div className="mt-10 pt-8 border-t border-white/8">
+          <p className="text-[10px] font-bold text-[#333] uppercase tracking-widest mb-3">Invitaciones por estilo</p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+            {ESTILOS.map((e) => (
+              <Link key={e.id} to={`/plantillas/${e.id}`}
+                className="text-[11px] text-[#444] hover:text-white transition-colors duration-200 cursor-pointer"
+              >
+                Invitaciones {e.nombre.toLowerCase()}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
         {/* Bottom */}
-        <div className="mt-12 pt-6 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#333] font-medium">
+        <div className="mt-8 pt-6 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#333] font-medium">
           <p>© {year} Axolote Studio — Todos los derechos reservados</p>
           <p>Parte del ecosistema <span className="text-[#444]">Social Ventura</span> · México</p>
         </div>

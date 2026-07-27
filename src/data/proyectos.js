@@ -41,20 +41,6 @@ export const proyectos = [
     slug: 'graduacion-emmanuel',
     imagen: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=600&q=80',
   },
-  {
-    id: 4,
-    titulo: 'Arq. Roberto Díaz',
-    categoria: 'Landing Pages',
-    descripcion: 'Presencia digital profesional para arquitecto independiente: portafolio de proyectos, servicios detallados, branding aplicado, SEO básico y contacto directo por WhatsApp.',
-    tags: ['Portafolio', 'SEO básico', 'Branding', 'WhatsApp', 'Responsive'],
-    ubicacion: 'Mérida, Yucatán',
-    paquete: 'Paquete Marca Digital',
-    gradient: 'from-stone-50 to-neutral-200',
-    iconColor: '#78716C',
-    icon: '🏛️',
-    slug: 'arq-roberto-diaz',
-    imagen: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80',
-  },
 ]
 
-export const categorias = ['Todos', 'Invitaciones', 'Landing Pages']
+export const categorias = ['Todos', 'Invitaciones']

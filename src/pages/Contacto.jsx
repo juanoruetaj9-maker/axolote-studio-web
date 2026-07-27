@@ -42,11 +42,11 @@ export default function Contacto() {
     }
   }
 
-  const inputClass = "bg-[#111] border border-white/10 text-white placeholder-[#444] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF2D78] focus:border-[#FF2D78]/50 transition-all w-full"
+  const inputClass = "bg-white border border-black/10 text-[#111] placeholder-[#aaa] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF2D78] focus:border-[#FF2D78]/50 transition-all w-full"
   const labelClass = "block text-[#555] text-xs font-semibold uppercase tracking-[0.12em] mb-2"
 
   return (
-    <div style={{ backgroundColor: '#080808' }}>
+    <div style={{ backgroundColor: '#F8F8F8' }}>
 
       {/* Header */}
       <section style={{ backgroundColor: '#080808' }} className="pt-14 pb-16 md:pt-20 md:pb-24">
@@ -64,13 +64,13 @@ export default function Contacto() {
       </section>
 
       {/* Main content */}
-      <section className="pb-20 md:pb-28" style={{ backgroundColor: '#080808' }}>
+      <section className="pb-20 md:pb-28" style={{ backgroundColor: '#F8F8F8' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
             {/* Form */}
             <motion.div {...inView()}>
-              <h2 className="font-display font-bold text-xl text-white mb-7">
+              <h2 className="font-display font-bold text-xl text-[#111] mb-7">
                 Cuéntanos tu proyecto
               </h2>
 
@@ -89,7 +89,7 @@ export default function Contacto() {
                     className={`${inputClass} ${nombreShowError ? 'border-red-500/60 focus:ring-red-500/60 focus:border-red-500/60' : ''}`}
                   />
                   {nombreShowError && (
-                    <p className="text-xs text-red-400 mt-1.5">Escribe tu nombre para poder enviar tu mensaje.</p>
+                    <p className="text-xs text-red-600 mt-1.5">Escribe tu nombre para poder enviar tu mensaje.</p>
                   )}
                 </div>
 
@@ -100,16 +100,13 @@ export default function Contacto() {
                     value={form.tipo}
                     onChange={handleChange}
                     className={inputClass}
-                    style={{ backgroundColor: '#111' }}
+                    style={{ backgroundColor: '#fff' }}
                   >
                     <option value="">Selecciona una opción...</option>
                     <option value="Invitación web - Boda">Invitación web — Boda</option>
                     <option value="Invitación web - XV Años">Invitación web — XV Años</option>
-                    <option value="Invitación web - Graduación">Invitación web — Graduación</option>
-                    <option value="Invitación web - Otro evento">Invitación web — Otro evento</option>
-                    <option value="Landing page para negocio">Landing page para negocio</option>
-                    <option value="Branding / Logotipo">Branding / Logotipo</option>
-                    <option value="Diseño en Canva / Material visual">Diseño en Canva / Material visual</option>
+                    <option value="Invitación web - Baby Shower">Invitación web — Baby Shower</option>
+                    <option value="Invitación web - Cumpleaños Especial">Invitación web — Cumpleaños Especial</option>
                     <option value="Otro">Otro</option>
                   </select>
                 </div>
@@ -141,20 +138,20 @@ export default function Contacto() {
                     </svg>
                     Enviar por WhatsApp
                   </a>
-                  <p className="text-xs text-[#444] text-center mt-3">
+                  <p className="text-xs text-[#999] text-center mt-3">
                     Al hacer clic, se abrirá WhatsApp con tu mensaje pre-escrito. Sin presión.
                   </p>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="flex-1 h-px bg-white/8" />
-                  <span className="text-xs text-[#444]">o también</span>
-                  <div className="flex-1 h-px bg-white/8" />
+                  <div className="flex-1 h-px bg-black/8" />
+                  <span className="text-xs text-[#999]">o también</span>
+                  <div className="flex-1 h-px bg-black/8" />
                 </div>
 
                 <a
                   href={`mailto:${EMAIL}?subject=Cotización de proyecto&body=Hola Axolote Studio, me gustaría cotizar...`}
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl border border-white/10 text-[#555] text-sm font-semibold hover:border-[#FF2D78] hover:text-[#FF2D78] transition-all cursor-pointer"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl border border-black/10 text-[#555] text-sm font-semibold hover:border-[#FF2D78] hover:text-[#FF2D78] transition-all cursor-pointer"
                 >
                   <Mail size={15} />
                   Enviar por correo
@@ -166,50 +163,50 @@ export default function Contacto() {
             <motion.div {...inView(0.1)} className="flex flex-col gap-4">
 
               <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-5 rounded-xl border border-white/8 bg-[#111] hover:border-[#FF2D78]/20 transition-all duration-200 cursor-pointer"
+                className="group flex items-center gap-4 p-5 rounded-xl border border-black/8 bg-white shadow-sm hover:border-[#FF2D78]/20 transition-all duration-200 cursor-pointer"
               >
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#25D366' }}>
                   <MessageCircle size={20} className="text-white" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-white text-sm">WhatsApp directo</p>
-                  <p className="text-xs text-[#444] mt-0.5">Respuesta en menos de 24 horas</p>
+                  <p className="font-semibold text-[#111] text-sm">WhatsApp directo</p>
+                  <p className="text-xs text-[#999] mt-0.5">Respuesta en menos de 24 horas</p>
                 </div>
-                <ArrowRight size={15} className="text-[#333] group-hover:text-[#FF2D78] transition-colors duration-200" />
+                <ArrowRight size={15} className="text-[#ccc] group-hover:text-[#FF2D78] transition-colors duration-200" />
               </a>
 
               <a href={`mailto:${EMAIL}`}
-                className="group flex items-center gap-4 p-5 rounded-xl border border-white/8 bg-[#111] hover:border-[#FF2D78]/20 transition-all duration-200 cursor-pointer"
+                className="group flex items-center gap-4 p-5 rounded-xl border border-black/8 bg-white shadow-sm hover:border-[#FF2D78]/20 transition-all duration-200 cursor-pointer"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#FF2D78]/15 flex items-center justify-center shrink-0">
                   <Mail size={20} className="text-[#FF2D78]" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-white text-sm">{EMAIL}</p>
-                  <p className="text-xs text-[#444] mt-0.5">Para proyectos formales y empresas</p>
+                  <p className="font-semibold text-[#111] text-sm">{EMAIL}</p>
+                  <p className="text-xs text-[#999] mt-0.5">Para proyectos formales y empresas</p>
                 </div>
-                <ArrowRight size={15} className="text-[#333] group-hover:text-[#FF2D78] transition-colors duration-200" />
+                <ArrowRight size={15} className="text-[#ccc] group-hover:text-[#FF2D78] transition-colors duration-200" />
               </a>
 
-              <div className="flex items-center gap-4 p-5 rounded-xl border border-white/8 bg-[#111]">
-                <div className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-4 p-5 rounded-xl border border-black/8 bg-white shadow-sm">
+                <div className="w-11 h-11 rounded-xl bg-black/5 flex items-center justify-center shrink-0">
                   <MapPin size={20} className="text-[#555]" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">México</p>
-                  <p className="text-xs text-[#444] mt-0.5">Atendemos toda la república</p>
-                  <p className="text-xs text-[#333] mt-0.5">Trabajamos 100% remoto</p>
+                  <p className="font-semibold text-[#111] text-sm">México</p>
+                  <p className="text-xs text-[#999] mt-0.5">Atendemos toda la república</p>
+                  <p className="text-xs text-[#bbb] mt-0.5">Trabajamos 100% remoto</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-5 rounded-xl border border-white/8 bg-[#111]">
-                <div className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-4 p-5 rounded-xl border border-black/8 bg-white shadow-sm">
+                <div className="w-11 h-11 rounded-xl bg-black/5 flex items-center justify-center shrink-0">
                   <Clock size={20} className="text-[#555]" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">Respondemos rápido</p>
-                  <p className="text-xs text-[#444] mt-0.5">Tiempo promedio: menos de 8 horas</p>
-                  <p className="text-xs text-[#333] mt-0.5">Lunes a sábado, 9:00–19:00 h</p>
+                  <p className="font-semibold text-[#111] text-sm">Respondemos rápido</p>
+                  <p className="text-xs text-[#999] mt-0.5">Tiempo promedio: menos de 8 horas</p>
+                  <p className="text-xs text-[#bbb] mt-0.5">Lunes a sábado, 9:00–19:00 h</p>
                 </div>
               </div>
 

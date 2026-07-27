@@ -36,7 +36,7 @@ const valores = [
 
 export default function Nosotros() {
   return (
-    <div style={{ backgroundColor: '#080808' }}>
+    <div style={{ backgroundColor: '#F8F8F8' }}>
 
       {/* Header */}
       <section style={{ backgroundColor: '#080808' }} className="pt-14 pb-16 md:pt-20 md:pb-24">
@@ -45,22 +45,22 @@ export default function Nosotros() {
             <span className="text-[11px] font-semibold text-[#444] uppercase tracking-[0.22em]">Quiénes somos</span>
             <h1 className="font-display font-black text-white text-[clamp(2.8rem,8vw,6rem)] tracking-tight leading-none mt-3 max-w-2xl">
               Diseño profesional<br />
-              para negocios<br />
+              para momentos<br />
               <em className="not-italic text-[#FF2D78]">reales.</em>
             </h1>
             <p className="text-[#555] text-base leading-relaxed mt-5 max-w-md">
-              Un estudio creativo y digital que transforma negocios en presencias profesionales, claras y memorables.
+              Un estudio creativo y digital que transforma tus eventos más importantes en experiencias digitales profesionales, claras y memorables.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Historia */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#080808' }}>
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#F8F8F8' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div {...inView()} className="order-2 lg:order-1">
-              <div className="rounded-xl overflow-hidden aspect-[4/5] border border-white/8">
+              <div className="rounded-xl overflow-hidden aspect-[4/5] border border-black/8">
                 <img
                   src="/imagenes/nosotros/studio.jpg"
                   alt="Equipo Axolote Studio"
@@ -70,22 +70,22 @@ export default function Nosotros() {
             </motion.div>
 
             <motion.div {...inView(0.1)} className="order-1 lg:order-2">
-              <span className="text-[11px] font-semibold text-[#444] uppercase tracking-[0.22em]">Nuestra historia</span>
-              <h2 className="font-display font-black text-white text-3xl md:text-4xl tracking-tight mt-3 mb-6">
+              <span className="text-[11px] font-semibold text-[#999] uppercase tracking-[0.22em]">Nuestra historia</span>
+              <h2 className="font-display font-black text-[#111] text-3xl md:text-4xl tracking-tight mt-3 mb-6">
                 Nació de una pregunta sencilla
               </h2>
               <div className="flex flex-col gap-4 text-sm text-[#666] leading-relaxed">
                 <p>
-                  Axolote Studio nació con una pregunta sencilla: ¿por qué hay tantos negocios increíbles que visualmente parecen pequeños o poco serios en internet?
+                  Axolote Studio nació con una pregunta sencilla: ¿por qué las bodas, los XV años y las celebraciones más importantes de la vida terminan con invitaciones digitales genéricas, sin identidad ni cuidado visual?
                 </p>
                 <p>
-                  Restaurantes excelentes sin página. Clínicas de calidad con imagen descuidada. Eventos premium con invitaciones del montón. El problema no era falta de calidad en el negocio, sino falta de acceso a diseño profesional real y accesible.
+                  Bodas soñadas con invitaciones de plantilla. XV años cuidados al detalle con una tarjeta digital genérica. Baby showers y cumpleaños especiales sin nada que reflejara su importancia. El problema no era falta de cariño por el evento, sino falta de acceso a diseño profesional real y accesible.
                 </p>
                 <p>
                   Decidimos resolver exactamente eso. No con tecnología complicada ni términos corporativos, sino con diseño honesto, acompañamiento cercano y precios que tienen sentido.
                 </p>
-                <p className="font-semibold text-white">
-                  Hoy ayudamos a personas y negocios de toda México a verse tan profesionales como realmente son.
+                <p className="font-semibold text-[#111]">
+                  Hoy ayudamos a personas de toda México a vivir sus eventos más importantes con una experiencia digital tan especial como la ocasión.
                 </p>
               </div>
             </motion.div>
@@ -97,7 +97,7 @@ export default function Nosotros() {
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1600&q=80"
-          alt="Sureste Mexicano"
+          alt="Axolote Studio en México"
           loading="lazy"
           className="w-full h-full object-cover"
         />
@@ -113,28 +113,28 @@ export default function Nosotros() {
       </div>
 
       {/* Misión / Visión */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#0D0D0D' }}>
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <motion.div {...inView()}
-              className="bg-[#111] rounded-2xl p-8 border border-white/10"
+              className="bg-[#F8F8F8] rounded-2xl p-8 border border-black/8"
             >
               <div className="w-10 h-10 rounded-xl bg-[#FF2D78]/20 flex items-center justify-center mb-5">
                 <Target size={20} className="text-[#FF2D78]" />
               </div>
-              <h3 className="font-display font-bold text-xl text-white mb-3">Misión</h3>
+              <h3 className="font-display font-bold text-xl text-[#111] mb-3">Misión</h3>
               <p className="text-sm text-[#666] leading-relaxed">
-                Ayudar a personas y negocios a mejorar su presencia visual y digital mediante experiencias creativas, modernas y accesibles, ofreciendo acompañamiento cercano, diseño profesional y soluciones fáciles de entender.
+                Ayudar a las personas a celebrar sus eventos más importantes — bodas, XV años, baby shower y cumpleaños especiales — con experiencias digitales creativas, modernas y accesibles, ofreciendo acompañamiento cercano, diseño profesional y soluciones fáciles de entender.
               </p>
             </motion.div>
 
             <motion.div {...inView(0.1)}
-              className="bg-[#111] rounded-2xl p-8 border border-white/10"
+              className="bg-[#F8F8F8] rounded-2xl p-8 border border-black/8"
             >
               <div className="w-10 h-10 rounded-xl bg-[#FF2D78]/20 flex items-center justify-center mb-5">
                 <Eye size={20} className="text-[#FF2D78]" />
               </div>
-              <h3 className="font-display font-bold text-xl text-white mb-3">Visión</h3>
+              <h3 className="font-display font-bold text-xl text-[#111] mb-3">Visión</h3>
               <p className="text-sm text-[#666] leading-relaxed">
                 Convertirnos en el estudio creativo y digital de referencia en México, reconocido por diseño premium amigable, acompañamiento real y resultados visuales que generan confianza y abren puertas.
               </p>
@@ -144,11 +144,11 @@ export default function Nosotros() {
       </section>
 
       {/* Valores */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#080808' }}>
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#F8F8F8' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           <motion.div {...inView()} className="mb-12">
-            <span className="text-[11px] font-semibold text-[#444] uppercase tracking-[0.22em]">Valores</span>
-            <h2 className="font-display font-black text-white text-4xl md:text-5xl tracking-tight mt-2">
+            <span className="text-[11px] font-semibold text-[#999] uppercase tracking-[0.22em]">Valores</span>
+            <h2 className="font-display font-black text-[#111] text-4xl md:text-5xl tracking-tight mt-2">
               Lo que nos define
             </h2>
           </motion.div>
@@ -156,7 +156,7 @@ export default function Nosotros() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {valores.map((v, i) => (
               <motion.div key={v.title} {...inView(i * 0.07)}
-                className="group rounded-xl overflow-hidden bg-[#111] border border-white/8 hover:border-[#FF2D78]/30 transition-all duration-200"
+                className="group rounded-xl overflow-hidden bg-white border border-black/8 hover:border-[#FF2D78]/30 shadow-sm transition-all duration-200"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
@@ -167,7 +167,7 @@ export default function Nosotros() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display font-bold text-white mb-1.5">{v.title}</h3>
+                  <h3 className="font-display font-bold text-[#111] mb-1.5">{v.title}</h3>
                   <p className="text-xs text-[#555] leading-relaxed">{v.desc}</p>
                 </div>
               </motion.div>
@@ -187,22 +187,22 @@ export default function Nosotros() {
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(8,8,8,0.6)' }} />
         <div className="absolute inset-0 flex items-center justify-center">
           <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.3em]">
-            Axolote Studio · Sureste Mexicano
+            Axolote Studio · México
           </p>
         </div>
       </div>
 
       {/* Ecosistema */}
-      <section className="py-16" style={{ backgroundColor: '#080808' }}>
+      <section className="py-16" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-10">
           <motion.div {...inView()}
-            className="flex flex-col md:flex-row items-center gap-6 bg-[#111] rounded-2xl p-7 border border-white/8"
+            className="flex flex-col md:flex-row items-center gap-6 bg-[#F8F8F8] rounded-2xl p-7 border border-black/8"
           >
             <div className="w-12 h-12 rounded-xl bg-[#FF2D78]/20 flex items-center justify-center shrink-0">
               <Globe size={22} className="text-[#FF2D78]" />
             </div>
             <div>
-              <h3 className="font-display font-bold text-white mb-1">
+              <h3 className="font-display font-bold text-[#111] mb-1">
                 Parte del ecosistema Social Ventura
               </h3>
               <p className="text-sm text-[#555] leading-relaxed">
