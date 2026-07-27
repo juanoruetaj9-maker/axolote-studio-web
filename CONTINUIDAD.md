@@ -26,9 +26,10 @@ El usuario dio carta blanca completa para rediseñar sin restricciones de paleta
 - ✅ Redesign Dark Luxury Studio aplicado.
 - ✅ **Fix — countdown de invitaciones** (2026-07-15): 4 páginas (Mariana, Isabella, Emmanuel, Demo Invitaciones) duplicaban un hook de countdown que se congelaba en `00:00:00:00` sin limpiar el `setInterval` cuando la fecha objetivo ya había pasado. Se extrajo a `src/hooks/useCountdown.js` (única fuente, limpia el interval al expirar). Verificado con build + lint + prueba en navegador.
 - ✅ **Dependencia agregada:** `framer-motion` (^12.41.0).
-- 🔍 **Auditoría de seguridad/código (2026-07-15):** sin secrets ni API keys expuestos (sitio 100% estático, sin `.env`). Hallazgos menores no críticos y no arreglados aún:
+- 🔍 **Auditoría de seguridad/código (2026-07-15, re-confirmada 2026-07-27):** sin secrets ni API keys expuestos (sitio 100% estático, sin `.env`), sin `dangerouslySetInnerHTML`/`eval`, todos los `target="_blank"` con `rel="noopener noreferrer"`, sin vulnerabilidades HIGH/MEDIUM explotables. Hallazgos menores no críticos y no arreglados aún:
   - `src/pages/Contacto.jsx` — el campo "Tu nombre *" no tiene validación real (`required` o chequeo al enviar); el link de WhatsApp queda activo aunque el campo esté vacío.
   - Las imágenes de portafolio/demos usan stock de Unsplash (no son fotos reales de clientes) — no es bug de código, pero vale la pena que Juan lo sepa antes de mostrarlo como pitch real.
+- ✅ **Hardening de headers de seguridad (2026-07-27):** `vercel.json` ahora define `Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy` y `Permissions-Policy`. La CSP permite explícitamente `fonts.googleapis.com`/`fonts.gstatic.com` (Google Fonts) e `images.unsplash.com` (imágenes de portafolio/demos); todo lo demás restringido a `'self'`. **Nota:** estos headers solo se aplican en un deploy real en Vercel (no hay `.vercel/` vinculado localmente ni deploy confirmado aún) — no tienen efecto en `npm run dev`/`vite preview`. Falta verificar en producción una vez que el sitio esté desplegado.
 
 ## 4. Infraestructura / accesos
 - **Repo GitHub (privado):** https://github.com/juanoruetaj9-maker/axolote-studio-web (rama `main`)
@@ -54,4 +55,5 @@ No requiere `.env` — no hay backend ni claves.
 2. ✅ Fix del countdown congelado.
 3. **Pendiente (opcional, no crítico):** validar el campo de nombre en el formulario de contacto antes de habilitar el link de WhatsApp.
 4. **Pendiente (decisión de Juan):** reemplazar las fotos de stock de Unsplash por fotografía real si el portafolio se va a usar en pitches reales a clientes.
-5. **Siguiente** — definir con Juan qué sigue: deploy a producción (si no existe ya), más proyectos de portafolio, o ajustes de contenido/copy.
+5. **Pendiente:** verificar los headers de seguridad (`vercel.json`) una vez desplegado en producción — confirmar con `curl -I` que `Content-Security-Policy`/`X-Frame-Options`/etc. llegan y que no rompen fuentes (Google Fonts) ni imágenes (Unsplash).
+6. **Siguiente** — definir con Juan qué sigue: deploy a producción (si no existe ya), más proyectos de portafolio, o ajustes de contenido/copy.

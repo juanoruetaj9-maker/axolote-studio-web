@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { MessageCircle, Mail, MapPin, Clock, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -27,8 +27,20 @@ function buildWaMessage({ nombre, tipo, mensaje }) {
 
 export default function Contacto() {
   const [form, setForm] = useState({ nombre: '', tipo: '', mensaje: '' })
+  const [nombreTouched, setNombreTouched] = useState(false)
+  const nombreRef = useRef(null)
   const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  const nombreValid = form.nombre.trim().length > 0
+  const nombreShowError = nombreTouched && !nombreValid
   const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWaMessage(form)}`
+
+  const handleWaClick = (e) => {
+    if (!nombreValid) {
+      e.preventDefault()
+      setNombreTouched(true)
+      nombreRef.current?.focus()
+    }
+  }
 
   const inputClass = "bg-[#111] border border-white/10 text-white placeholder-[#444] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF2D78] focus:border-[#FF2D78]/50 transition-all w-full"
   const labelClass = "block text-[#555] text-xs font-semibold uppercase tracking-[0.12em] mb-2"
@@ -66,13 +78,19 @@ export default function Contacto() {
                 <div>
                   <label className={labelClass}>Tu nombre *</label>
                   <input
+                    ref={nombreRef}
                     type="text"
                     name="nombre"
                     value={form.nombre}
                     onChange={handleChange}
+                    onBlur={() => setNombreTouched(true)}
                     placeholder="Ej. Ana García"
-                    className={inputClass}
+                    aria-invalid={nombreShowError}
+                    className={`${inputClass} ${nombreShowError ? 'border-red-500/60 focus:ring-red-500/60 focus:border-red-500/60' : ''}`}
                   />
+                  {nombreShowError && (
+                    <p className="text-xs text-red-400 mt-1.5">Escribe tu nombre para poder enviar tu mensaje.</p>
+                  )}
                 </div>
 
                 <div>
@@ -113,7 +131,9 @@ export default function Contacto() {
                     href={waUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 w-full py-4 rounded-xl font-bold text-white text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+                    onClick={handleWaClick}
+                    aria-disabled={!nombreValid}
+                    className={`flex items-center justify-center gap-3 w-full py-4 rounded-xl font-bold text-white text-sm shadow-md transition-all cursor-pointer ${nombreValid ? 'hover:shadow-lg' : 'opacity-50'}`}
                     style={{ backgroundColor: '#25D366' }}
                   >
                     <svg viewBox="0 0 24 24" fill="white" width="18" height="18">
