@@ -19,17 +19,22 @@ El usuario dio carta blanca completa para rediseñar sin restricciones de paleta
 - Tipografía: **Syne 800** (headings/navbar/números) + **Manrope 400/500** (body) + Manrope 600 uppercase tracking (labels)
 - Navbar flotante `top-4 left-4 right-4` pill, footer horizontal minimal, hero full-viewport, ticker rosa de alto impacto, portafolio en grayscale que satura en hover
 
-## 3. Estado actual (al 2026-07-15)
+## 3. Estado actual (al 2026-07-27)
 
-- ✅ Sitio completo: Home, Servicios, Portafolio, Proceso, Nosotros, Contacto.
-- ✅ Demos de portafolio interactivas: Invitaciones, Landing Pages, Branding, + 4 proyectos individuales (Boda Mariana&Diego, XV Isabella, Graduación Emmanuel, Arq. Roberto Díaz).
-- ✅ Redesign Dark Luxury Studio aplicado.
-- ✅ **Fix — countdown de invitaciones** (2026-07-15): 4 páginas (Mariana, Isabella, Emmanuel, Demo Invitaciones) duplicaban un hook de countdown que se congelaba en `00:00:00:00` sin limpiar el `setInterval` cuando la fecha objetivo ya había pasado. Se extrajo a `src/hooks/useCountdown.js` (única fuente, limpia el interval al expirar). Verificado con build + lint + prueba en navegador.
+- ✅ Sitio completo: Home, Servicios, Plantillas (galería + detalle + por estilo), Portafolio, Proceso, Nosotros, Contacto.
+- ✅ Demos de portafolio interactivas: Invitaciones + 3 proyectos individuales (Boda Mariana&Diego, XV Isabella, Graduación Emmanuel). `DemoBranding`, `DemoLandingPages` y `ProyectoArqRoberto` se eliminaron en el refactor de 2026-07-2x (el sitio se re-enfocó a eventos especiales: bodas, XV años, baby showers, cumpleaños).
+- ✅ **Sistema de "Plantillas" nuevo** (`/plantillas`, `/plantillas/:estilo`, `/plantillas/detalle/:id`): galería de plantillas de invitación por estilo, con detalle individual, SEO (meta tags dinámicos vía `useDocumentMeta`, JSON-LD) y sitemap autogenerado en build (`scripts/generate-sitemap.mjs` → `public/sitemap.xml`, corre como `prebuild`). Datos 100% estáticos en `src/data/plantillas.js`.
+- ✅ **Sistema de "Paquetes"/demo interactiva de eventos** (`PaquetesDemo.jsx` + `src/data/paquetes.js`) y componentes de demo reutilizables en `src/components/demo/` (QR, RSVP, álbum, cuenta regresiva, mesa de regalos, save-the-date, logo, invitación integrada).
+- ✅ Redesign Dark Luxury Studio aplicado (junio 2026), luego **refactor de paleta clara** (2026-07-2x) extendido a Contacto, Servicios, Portafolio, Proceso, Nosotros y el hero de Home — convivencia de secciones oscuras (`#080808`, ej. headers) y claras (`#F8F8F8`/blanco) según la página. Si se retoma diseño, revisar visualmente cada página para confirmar el estado real de la paleta antes de asumir "todo oscuro" como dice la sección 2 de este doc (esa sección quedó desactualizada tras el refactor).
+- ✅ **Fix — countdown de invitaciones** (2026-07-15): hook compartido `src/hooks/useCountdown.js`, limpia el interval al expirar. Verificado con build + lint + prueba en navegador.
 - ✅ **Dependencia agregada:** `framer-motion` (^12.41.0).
-- 🔍 **Auditoría de seguridad/código (2026-07-15, re-confirmada 2026-07-27):** sin secrets ni API keys expuestos (sitio 100% estático, sin `.env`), sin `dangerouslySetInnerHTML`/`eval`, todos los `target="_blank"` con `rel="noopener noreferrer"`, sin vulnerabilidades HIGH/MEDIUM explotables. Hallazgos menores no críticos y no arreglados aún:
-  - `src/pages/Contacto.jsx` — el campo "Tu nombre *" no tiene validación real (`required` o chequeo al enviar); el link de WhatsApp queda activo aunque el campo esté vacío.
-  - Las imágenes de portafolio/demos usan stock de Unsplash (no son fotos reales de clientes) — no es bug de código, pero vale la pena que Juan lo sepa antes de mostrarlo como pitch real.
-- ✅ **Hardening de headers de seguridad (2026-07-27):** `vercel.json` ahora define `Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy` y `Permissions-Policy`. La CSP permite explícitamente `fonts.googleapis.com`/`fonts.gstatic.com` (Google Fonts) e `images.unsplash.com` (imágenes de portafolio/demos); todo lo demás restringido a `'self'`. **Nota:** estos headers solo se aplican en un deploy real en Vercel (no hay `.vercel/` vinculado localmente ni deploy confirmado aún) — no tienen efecto en `npm run dev`/`vite preview`. Falta verificar en producción una vez que el sitio esté desplegado.
+- ✅ **Validación del campo nombre en Contacto** (2026-07-27): el link "Enviar por WhatsApp" ya no se puede activar con el campo "Tu nombre *" vacío — bloquea el clic, marca el input en rojo y muestra mensaje de error. Verificado inyectando eventos DOM reales (el tool de screenshot de la extensión de Chrome falló en esta sesión con un error interno, no relacionado al código).
+- ✅ **Hardening de headers de seguridad (2026-07-27):** `vercel.json` define `Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy` y `Permissions-Policy`. La CSP permite explícitamente `fonts.googleapis.com`/`fonts.gstatic.com` (Google Fonts) e `images.unsplash.com`; todo lo demás restringido a `'self'`. **Nota:** solo tiene efecto en un deploy real en Vercel (no hay `.vercel/` vinculado localmente ni deploy confirmado) — no aplica en `npm run dev`/`vite preview`. Falta verificar en producción con `curl -I` una vez desplegado.
+- 🔍 **Auditoría de seguridad/código — dos rondas (2026-07-27):**
+  1. Código base (pre-merge): sin secrets/API keys, sin `dangerouslySetInnerHTML`/`eval`, todos los `target="_blank"` con `rel="noopener noreferrer"`, sin vulnerabilidades HIGH/MEDIUM.
+  2. Código nuevo fusionado (sistema de plantillas/paquetes/demos, ~1840 líneas): sin vulnerabilidades HIGH/MEDIUM. El único `dangerouslySetInnerHTML` nuevo (JSON-LD en `PlantillaDetalle.jsx`) usa exclusivamente datos estáticos hardcodeados en `src/data/plantillas.js`, no input de usuario — no explotable. El parámetro de ruta `:id` solo se usa como clave de `.find()` contra un arreglo estático, nunca para indexar/evaluar.
+  - Hallazgo menor persistente, no crítico: las imágenes de portafolio/demos/plantillas usan stock de Unsplash (no son fotos reales de clientes) — avisar a Juan antes de usarlo en un pitch real.
+- ⚠️ **Sincronización de repo (2026-07-27):** la copia local estaba 15 commits atrás de `origin/main` (todo el trabajo de plantillas/paquetes se había hecho fuera de esta sesión/máquina). Se hizo `git pull` + merge (conflicto menor resuelto en `Contacto.jsx`, solo la clase de color del input) y push exitoso. **Antes de asumir que el repo local está al día en la próxima sesión, correr `git fetch && git log HEAD..origin/main --oneline` para confirmar que no hay divergencia de nuevo.**
 
 ## 4. Infraestructura / accesos
 - **Repo GitHub (privado):** https://github.com/juanoruetaj9-maker/axolote-studio-web (rama `main`)
@@ -45,15 +50,18 @@ npm run dev
 No requiere `.env` — no hay backend ni claves.
 
 ## 6. Estructura rápida
-- `src/pages/` — Home, Servicios, Portafolio, Proceso, Nosotros, Contacto, DemoInvitaciones, DemoLandingPages, DemoBranding, y los 4 `Proyecto*.jsx` de portafolio individual.
-- `src/components/` — `Navbar`, `Footer`, `DemoBanner` (CTA de WhatsApp en las demos), `MusicPlayerMock`, `FloatingWhatsApp`.
-- `src/hooks/useCountdown.js` — hook compartido de cuenta regresiva (usado por las 4 páginas con countdown de evento).
-- `src/data/` — datos estáticos de proyectos/portafolio.
+- `src/pages/` — Home, Servicios, Plantillas, PlantillasEstilo, PlantillaDetalle, Portafolio, Proceso, Nosotros, Contacto, DemoInvitaciones, y `ProyectoBodasMariana`/`ProyectoXVIsabella`/`ProyectoGraduacionEmmanuel` de portafolio individual.
+- `src/components/` — `Navbar`, `Footer`, `DemoBanner`, `MusicPlayerMock`, `FloatingWhatsApp`, `PaquetesDemo`, `PlantillaCard`, y `src/components/demo/` (QR, RSVP, Album, CardShell, CuentaRegresiva, Integrado, Invitacion, Logo, MesaRegalos, SaveTheDate).
+- `src/hooks/` — `useCountdown.js` (cuenta regresiva de eventos), `useDocumentMeta.js` (title/meta tags dinámicos por página).
+- `src/data/` — `proyectos.js` (portafolio), `plantillas.js` (galería de plantillas + estilos), `paquetes.js` (paquetes/demo de eventos), `README-plantillas.md` (docs del sistema de plantillas).
+- `scripts/generate-sitemap.mjs` — genera `public/sitemap.xml` en cada build (`prebuild`), a partir de las rutas estáticas + `plantillas.js`.
 
 ## 7. Próximo paso al retomar
-1. ✅ Sitio + demos + redesign dark luxury.
+1. ✅ Sitio + demos + redesign dark luxury → refactor a paleta clara + sistema de plantillas/paquetes.
 2. ✅ Fix del countdown congelado.
-3. **Pendiente (opcional, no crítico):** validar el campo de nombre en el formulario de contacto antes de habilitar el link de WhatsApp.
-4. **Pendiente (decisión de Juan):** reemplazar las fotos de stock de Unsplash por fotografía real si el portafolio se va a usar en pitches reales a clientes.
-5. **Pendiente:** verificar los headers de seguridad (`vercel.json`) una vez desplegado en producción — confirmar con `curl -I` que `Content-Security-Policy`/`X-Frame-Options`/etc. llegan y que no rompen fuentes (Google Fonts) ni imágenes (Unsplash).
-6. **Siguiente** — definir con Juan qué sigue: deploy a producción (si no existe ya), más proyectos de portafolio, o ajustes de contenido/copy.
+3. ✅ Validación del campo de nombre en Contacto.
+4. ✅ Headers de seguridad en `vercel.json`.
+5. **Pendiente (decisión de Juan):** reemplazar las fotos de stock de Unsplash por fotografía real si el portafolio/plantillas se van a usar en pitches reales a clientes.
+6. **Pendiente:** verificar los headers de seguridad (`vercel.json`) una vez desplegado en producción — confirmar con `curl -I` que `Content-Security-Policy`/`X-Frame-Options`/etc. llegan y que no rompen fuentes (Google Fonts) ni imágenes (Unsplash).
+7. **Pendiente:** confirmar visualmente el estado real de la paleta por página (sección 2/3 de este doc) — el refactor a claro no fue verificado en navegador en esta sesión, solo por diff/build.
+8. **Siguiente** — definir con Juan qué sigue: deploy a producción (si no existe ya), más plantillas/proyectos de portafolio, o ajustes de contenido/copy.
